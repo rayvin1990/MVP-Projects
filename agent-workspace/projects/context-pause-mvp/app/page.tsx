@@ -44,9 +44,9 @@ export default function Home() {
         const result = await response.json();
         console.log('API Response:', result);
 
-        // 手动保存到 localStorage
+        // Save to localStorage
         if (editingContext) {
-          // 更新
+          // Update
           const contexts = JSON.parse(localStorage.getItem('context_pause_data') || '[]');
           const index = contexts.findIndex((c: any) => c.id === editingContext.id);
           if (index !== -1) {
@@ -54,13 +54,13 @@ export default function Home() {
             localStorage.setItem('context_pause_data', JSON.stringify(contexts));
           }
         } else {
-          // 创建
+          // Create
           const contexts = JSON.parse(localStorage.getItem('context_pause_data') || '[]');
           contexts.push(result.data);
           localStorage.setItem('context_pause_data', JSON.stringify(contexts));
         }
 
-        // 刷新列表
+        // Refresh list
         if ((window as any).refreshContexts) {
           (window as any).refreshContexts();
         }
@@ -70,31 +70,30 @@ export default function Home() {
       } else {
         const error = await response.json();
         console.error('API Error:', error);
-        alert(`操作失败: ${error.error || '未知错误'}`);
+        alert(`Operation failed: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Failed to submit form:', error);
-      alert('操作失败，请重试');
+      alert('Operation failed, please try again');
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('确定要删除这个上下文吗？')) {
+    if (!confirm('Are you sure you want to delete this context?')) {
       return;
     }
 
     try {
       const response = await fetch(`/api/contexts/${id}`, {
-        method: 'DELETE',
       });
 
       if (response.ok) {
-        // 手动从 localStorage 删除
+        // Delete from localStorage
         const contexts = JSON.parse(localStorage.getItem('context_pause_data') || '[]');
         const filtered = contexts.filter((c: any) => c.id !== id);
         localStorage.setItem('context_pause_data', JSON.stringify(filtered));
 
-        // 刷新列表
+        // Refresh list
         if ((window as any).refreshContexts) {
           (window as any).refreshContexts();
         }
@@ -102,11 +101,11 @@ export default function Home() {
         setRefreshKey((prev) => prev + 1);
       } else {
         const error = await response.json();
-        alert(`删除失败: ${error.error || '未知错误'}`);
+        alert(`Delete failed: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Failed to delete context:', error);
-      alert('删除失败，请重试');
+      alert('Delete failed, please try again');
     }
   };
 
@@ -116,10 +115,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <header className="text-center mb-12">
             <h1 className="text-4xl font-bold text-black mb-4">
-              上下文暂存与恢复
+              Context Pause & Resume
             </h1>
             <p className="text-lg text-gray-800">
-              减少上下文切换损失，保持心流状态
+              Reduce context switching loss and maintain flow state
             </p>
           </header>
 
@@ -130,7 +129,7 @@ export default function Home() {
                   onClick={handleCreate}
                   className="bg-blue-700 text-white py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors text-lg font-bold shadow-md"
                 >
-                  创建上下文
+                  Create Context
                 </button>
               </div>
 

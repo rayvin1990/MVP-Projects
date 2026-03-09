@@ -12,7 +12,7 @@ interface ContextCardProps {
 export default function ContextCard({ context, onEdit, onDelete }: ContextCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleString('zh-CN', {
+    return date.toLocaleString(undefined, {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -30,13 +30,13 @@ export default function ContextCard({ context, onEdit, onDelete }: ContextCardPr
             onClick={() => onEdit(context)}
             className="text-blue-700 hover:text-blue-800 text-sm font-semibold"
           >
-            编辑
+            Edit
           </button>
           <button
             onClick={() => onDelete(context.id)}
             className="text-red-700 hover:text-red-800 text-sm font-semibold"
           >
-            删除
+            Delete
           </button>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function ContextCard({ context, onEdit, onDelete }: ContextCardPr
 
       {context.files && context.files.length > 0 && (
         <div className="mb-4">
-          <h4 className="text-sm font-bold text-gray-800 mb-2">相关文件:</h4>
+          <h4 className="text-sm font-bold text-gray-800 mb-2">Related Files:</h4>
           <ul className="list-disc list-inside text-sm text-gray-800">
             {context.files.map((file, index) => (
               <li key={index}>{file}</li>
@@ -58,7 +58,7 @@ export default function ContextCard({ context, onEdit, onDelete }: ContextCardPr
 
       {context.commands && context.commands.length > 0 && (
         <div className="mb-4">
-          <h4 className="text-sm font-bold text-gray-800 mb-2">运行命令:</h4>
+          <h4 className="text-sm font-bold text-gray-800 mb-2">Commands:</h4>
           <ul className="list-disc list-inside text-sm text-black font-mono bg-gray-100 p-2 rounded border border-gray-200">
             {context.commands.map((cmd, index) => (
               <li key={index}>{cmd}</li>
@@ -69,7 +69,7 @@ export default function ContextCard({ context, onEdit, onDelete }: ContextCardPr
 
       {context.notes && (
         <div className="mb-4">
-          <h4 className="text-sm font-bold text-gray-800 mb-2">备注:</h4>
+          <h4 className="text-sm font-bold text-gray-800 mb-2">Notes:</h4>
           <p className="text-sm text-black bg-yellow-100 p-2 rounded border border-yellow-300">
             {context.notes}
           </p>
@@ -77,8 +77,8 @@ export default function ContextCard({ context, onEdit, onDelete }: ContextCardPr
       )}
 
       <div className="text-xs text-gray-600 pt-4 border-t border-gray-300">
-        <p>创建时间: {formatDate(context.createdAt)}</p>
-        <p>更新时间: {formatDate(context.updatedAt)}</p>
+        <p>Created: {formatDate(context.createdAt)}</p>
+        <p>Updated: {formatDate(context.updatedAt)}</p>
       </div>
     </div>
   );

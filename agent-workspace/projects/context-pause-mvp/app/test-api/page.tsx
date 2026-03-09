@@ -6,10 +6,10 @@ export default function TestApi() {
   const [status, setStatus] = useState('');
 
   const testApi = async () => {
-    setStatus('正在测试...');
+    setStatus('Testing...');
 
     try {
-      // 测试 GET
+      // Test GET
       console.log('Testing GET /api/contexts...');
       const getResponse = await fetch('/api/contexts');
       console.log('GET Response status:', getResponse.status);
@@ -18,21 +18,21 @@ export default function TestApi() {
       if (getResponse.ok) {
         const getData = await getResponse.json();
         console.log('GET Response data:', getData);
-        setStatus(`GET 成功: ${JSON.stringify(getData)}`);
+        setStatus(`GET Success: ${JSON.stringify(getData)}`);
       } else {
         const error = await getResponse.json();
         console.error('GET Error:', error);
-        setStatus(`GET 失败: ${JSON.stringify(error)}`);
+        setStatus(`GET Failed: ${JSON.stringify(error)}`);
       }
 
-      // 测试 POST
+      // Test POST
       console.log('\nTesting POST /api/contexts...');
       const testData = {
-        name: '测试上下文',
-        description: '这是一个测试',
+        name: 'Test Context',
+        description: 'This is a test',
         files: ['test1.ts', 'test2.ts'],
         commands: ['npm run dev'],
-        notes: '测试备注',
+        notes: 'Test notes',
       };
 
       const postResponse = await fetch('/api/contexts', {
@@ -49,32 +49,32 @@ export default function TestApi() {
       if (postResponse.ok) {
         const postData = await postResponse.json();
         console.log('POST Response data:', postData);
-        setStatus(`POST 成功: ${JSON.stringify(postData)}`);
+        setStatus(`POST Success: ${JSON.stringify(postData)}`);
       } else {
         const postError = await postResponse.text();
         console.error('POST Error:', postError);
-        setStatus(`POST 失败: ${postError}`);
+        setStatus(`POST Failed: ${postError}`);
       }
     } catch (error) {
       console.error('Test failed:', error);
-      setStatus(`测试失败: ${error}`);
+      setStatus(`Test failed: ${error}`);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-        <h1 className="text-2xl font-bold mb-4">API 测试页面</h1>
+        <h1 className="text-2xl font-bold mb-4">API Test Page</h1>
         <button
           onClick={testApi}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          测试 API
+          Test API
         </button>
         <div className="mt-4">
-          <h2 className="text-lg font-semibold mb-2">状态:</h2>
+          <h2 className="text-lg font-semibold mb-2">Status:</h2>
           <pre className="bg-gray-100 p-4 rounded overflow-auto">
-            {status || '等待测试...'}
+            {status || 'Waiting for test...'}
           </pre>
         </div>
       </div>

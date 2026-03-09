@@ -44,26 +44,26 @@ export default function ImageUploader({ onImageSelected, disabled = false }: Ima
   };
 
   const handleFile = (file: File) => {
-    // 验证文件类型
+    // Validate file type
     if (!file.type.startsWith('image/')) {
-      alert('请上传图片文件');
+      alert('Please upload an image file');
       return;
     }
 
-    // 验证文件大小（最大 10MB）
+    // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
-      alert('图片大小不能超过 10MB');
+      alert('Image size cannot exceed 10MB');
       return;
     }
 
-    // 转换为 Base64
+    // Convert to Base64
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       onImageSelected(reader.result as string);
     };
     reader.onerror = () => {
-      alert('图片读取失败');
+      alert('Failed to read image');
     };
   };
 
@@ -76,16 +76,18 @@ export default function ImageUploader({ onImageSelected, disabled = false }: Ima
   return (
     <div className="w-full">
       <div
-        className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-all ${
-          dragActive
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-gray-400'
-        } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+        className={`relative border-2 border-gray-400 rounded-lg p-8 text-center transition-all cursor-pointer bg-white ${
+          dragActive ? 'border-blue-500 bg-blue-50' : ''
+        } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
         onClick={disabled ? undefined : onButtonClick}
+        style={{
+          backgroundColor: '#ffffff',
+          borderColor: '#9ca3af',
+        }}
       >
         <input
           ref={fileInputRef}
@@ -97,10 +99,11 @@ export default function ImageUploader({ onImageSelected, disabled = false }: Ima
         />
         <div className="flex flex-col items-center justify-center">
           <svg
-            className="w-12 h-12 mb-4 text-gray-400"
+            className="w-12 h-12 mb-4 text-gray-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            style={{ color: '#6b7280' }}
           >
             <path
               strokeLinecap="round"
@@ -109,11 +112,17 @@ export default function ImageUploader({ onImageSelected, disabled = false }: Ima
               d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <p className="text-lg text-gray-600 mb-2">
-            点击或拖拽上传图片
+          <p 
+            className="text-lg mb-2"
+            style={{ color: '#000000' }}
+          >
+            Click or drag to upload image
           </p>
-          <p className="text-sm text-gray-400">
-            支持 JPG, PNG, GIF 格式，最大 10MB
+          <p 
+            className="text-sm"
+            style={{ color: '#6b7280' }}
+          >
+            Supports JPG, PNG, GIF, max 10MB
           </p>
         </div>
       </div>

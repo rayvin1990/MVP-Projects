@@ -38,7 +38,7 @@ export default function SnippetList({ onEdit, onDelete, onCopy }: SnippetListPro
     setSearchQuery(e.target.value);
   };
 
-  // 过滤片段
+  // Filter snippets
   const filteredSnippets = snippets.filter(snippet =>
     searchQuery === '' ||
     snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -57,9 +57,9 @@ export default function SnippetList({ onEdit, onDelete, onCopy }: SnippetListPro
   if (filteredSnippets.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-700 text-lg font-semibold">没有找到文本片段</p>
+        <p className="text-gray-700 text-lg font-semibold">No snippets found</p>
         <p className="text-gray-600 text-sm mt-2">
-          {searchQuery ? `没有包含 "${searchQuery}" 的片段` : '还没有文本片段'}
+          {searchQuery ? `No snippets containing "${searchQuery}"` : 'No snippets yet'}
         </p>
       </div>
     );

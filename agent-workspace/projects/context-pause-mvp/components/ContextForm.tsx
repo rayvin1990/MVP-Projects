@@ -33,78 +33,78 @@ export default function ContextForm({ context, onSubmit, onCancel }: ContextForm
   return (
     <div className="bg-white border-2 border-gray-300 rounded-lg p-6 shadow-sm">
       <h2 className="text-2xl font-bold text-black mb-6">
-        {context ? '编辑上下文' : '创建上下文'}
+        {context ? 'Edit Context' : 'Create Context'}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="name" className="block text-sm font-bold text-gray-800 mb-2">
-            名称 *
+            Name *
           </label>
           <input
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-black"
-            placeholder="例如：用户登录功能开发"
+            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-black bg-white placeholder-gray-500"
+            placeholder="e.g., User login feature development"
             required
           />
         </div>
 
         <div>
           <label htmlFor="description" className="block text-sm font-bold text-gray-800 mb-2">
-            描述
+            Description
           </label>
           <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-black"
-            placeholder="描述这个上下文的用途..."
+            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-black bg-white placeholder-gray-500"
+            placeholder="Describe the purpose of this context..."
           />
         </div>
 
         <div>
           <label htmlFor="files" className="block text-sm font-bold text-gray-800 mb-2">
-            相关文件（每行一个）
+            Related Files (one per line)
           </label>
           <textarea
             id="files"
             value={files}
             onChange={(e) => setFiles(e.target.value)}
             rows={4}
-            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 font-mono text-sm text-black bg-gray-50"
+            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 font-mono text-sm text-black bg-white placeholder-gray-500"
             placeholder="src/components/Login.tsx&#10;src/pages/login.tsx"
           />
         </div>
 
         <div>
           <label htmlFor="commands" className="block text-sm font-bold text-gray-800 mb-2">
-            运行命令（每行一个）
+            Commands (one per line)
           </label>
           <textarea
             id="commands"
             value={commands}
             onChange={(e) => setCommands(e.target.value)}
             rows={4}
-            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 font-mono text-sm text-black bg-gray-50"
+            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 font-mono text-sm text-black bg-white placeholder-gray-500"
             placeholder="npm run dev&#10;npm run test"
           />
         </div>
 
         <div>
           <label htmlFor="notes" className="block text-sm font-bold text-gray-800 mb-2">
-            备注
+            Notes
           </label>
           <textarea
             id="notes"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={3}
-            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-black bg-yellow-100"
-            placeholder="写到哪了？下一步做什么？"
+            className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-black bg-yellow-100 placeholder-gray-600"
+            placeholder="Where did I leave off? What's next?"
           />
         </div>
 
@@ -113,14 +113,14 @@ export default function ContextForm({ context, onSubmit, onCancel }: ContextForm
             type="submit"
             className="flex-1 bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-800 transition-colors font-bold"
           >
-            {context ? '保存' : '创建'}
+            {context ? 'Save' : 'Create'}
           </button>
           <button
             type="button"
             onClick={onCancel}
             className="flex-1 bg-gray-300 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors font-bold"
           >
-            取消
+            Cancel
           </button>
         </div>
       </form>

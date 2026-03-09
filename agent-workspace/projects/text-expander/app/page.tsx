@@ -41,7 +41,7 @@ export default function Home() {
       if (response.ok) {
         const result = await response.json();
 
-        // 手动保存到 localStorage
+        // Save to localStorage
         const snippets = JSON.parse(localStorage.getItem('text_expander_data') || '[]');
 
         if (editingSnippet) {
@@ -58,16 +58,16 @@ export default function Home() {
         setRefreshKey((prev) => prev + 1);
       } else {
         const error = await response.json();
-        alert(`操作失败: ${error.error || '未知错误'}`);
+        alert(`Operation failed: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Failed to submit form:', error);
-      alert('操作失败，请重试');
+      alert('Operation failed, please try again');
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('确定要删除这个文本片段吗？')) {
+    if (!confirm('Are you sure you want to delete this snippet?')) {
       return;
     }
 
@@ -83,17 +83,17 @@ export default function Home() {
         setRefreshKey((prev) => prev + 1);
       } else {
         const error = await response.json();
-        alert(`删除失败: ${error.error || '未知错误'}`);
+        alert(`Delete failed: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Failed to delete snippet:', error);
-      alert('删除失败，请重试');
+      alert('Delete failed, please try again');
     }
   };
 
   const handleCopy = (content: string) => {
     navigator.clipboard.writeText(content);
-    setCopyFeedback('已复制到剪贴板！');
+    setCopyFeedback('Copied to clipboard!');
     setTimeout(() => setCopyFeedback(''), 2000);
   };
 
@@ -109,7 +109,7 @@ export default function Home() {
     }
   };
 
-  // 初始加载
+  // Initial load
   React.useEffect(() => {
     loadSnippets();
   }, []);
@@ -120,10 +120,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <header className="text-center mb-8">
             <h1 className="text-4xl font-bold text-black mb-4">
-              文本扩展工具
+              Text Expander
             </h1>
             <p className="text-lg text-gray-800">
-              快速插入常用文本片段
+              Quickly insert commonly used text snippets
             </p>
           </header>
 
@@ -140,7 +140,7 @@ export default function Home() {
                   onClick={handleCreate}
                   className="bg-blue-700 text-white py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors text-lg font-bold shadow-md"
                 >
-                  创建文本片段
+                  Create Snippet
                 </button>
               </div>
 

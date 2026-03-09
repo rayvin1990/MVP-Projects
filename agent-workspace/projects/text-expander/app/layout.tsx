@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "文本扩展工具 - Text Expander",
-  description: "快速插入常用文本片段",
+  title: "Text Expander",
+  description: "Quickly insert commonly used text snippets",
 };
 
 export default function RootLayout({

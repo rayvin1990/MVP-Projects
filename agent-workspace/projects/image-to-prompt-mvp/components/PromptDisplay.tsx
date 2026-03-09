@@ -12,7 +12,7 @@ export default function PromptDisplay({ prompt, isGenerating, error }: PromptDis
       <div className="w-full bg-gray-50 border border-gray-200 rounded-lg p-6">
         <div className="flex items-center justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-          <span className="ml-3 text-gray-600">正在生成提示词...</span>
+          <span className="ml-3 text-gray-600">Generating prompt...</span>
         </div>
       </div>
     );
@@ -44,7 +44,7 @@ export default function PromptDisplay({ prompt, isGenerating, error }: PromptDis
   if (prompt) {
     return (
       <div className="w-full bg-blue-50 border border-blue-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-3">生成的提示词：</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-3">Generated Prompt:</h3>
         <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">{prompt}</p>
       </div>
     );
@@ -52,7 +52,7 @@ export default function PromptDisplay({ prompt, isGenerating, error }: PromptDis
 
   return (
     <div className="w-full bg-gray-50 border border-gray-200 rounded-lg p-6">
-      <p className="text-gray-400 text-center">上传图片后将显示生成的提示词</p>
+      <p className="text-gray-400 text-center">Upload an image to generate a prompt</p>
     </div>
   );
 }

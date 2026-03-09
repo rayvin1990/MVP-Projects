@@ -1,4 +1,4 @@
-// TypeScript 类型定义
+// TypeScript Type Definitions
 
 export interface ImageUploadResponse {
   success: boolean;
@@ -6,8 +6,8 @@ export interface ImageUploadResponse {
 }
 
 export interface PromptGenerationRequest {
-  image: string; // Base64 编码的图片
-  apiKey?: string; // 可选的 API Key
+  image: string; // Base64 encoded image
+  apiKey?: string; // Optional API Key
 }
 
 export interface PromptGenerationResponse {
@@ -22,3 +22,15 @@ export interface GenerateState {
   generatedPrompt: string | null;
   error: string | null;
 }
+
+// API Configuration
+
+export const API_CONFIG = {
+  // Qwen3-VL-Plus API Configuration
+  qwen: {
+    apiKey: process.env.QWEN_API_KEY || 'sk-4f0f0d5dde074822b70d40ac48244d9d',
+    baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+    model: 'qwen-vl-plus', // qwen-vl-plus or qwen-vl-max
+    endpoint: '/chat/completions',
+  },
+} as const;

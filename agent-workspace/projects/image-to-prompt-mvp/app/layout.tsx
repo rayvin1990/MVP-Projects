@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "图片转提示词 - AI 辅助工具",
-  description: "上传图片，AI 自动生成详细的描述提示词",
+  title: "Image to Prompt - AI Tool",
+  description: "Upload an image and AI will generate a detailed description prompt",
 };
 
 export default function RootLayout({

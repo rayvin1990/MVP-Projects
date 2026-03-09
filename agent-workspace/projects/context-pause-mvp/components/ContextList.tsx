@@ -14,7 +14,7 @@ export default function ContextList({ onEdit, onDelete }: ContextListProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 直接从 localStorage 读取
+    // Load directly from localStorage
     loadContexts();
   }, []);
 
@@ -38,7 +38,7 @@ export default function ContextList({ onEdit, onDelete }: ContextListProps) {
     }
   };
 
-  // 暴露一个刷新方法，供父组件调用
+  // Expose refresh method to parent component
   useEffect(() => {
     (window as any).refreshContexts = loadContexts;
   }, [loadContexts]);
@@ -54,8 +54,8 @@ export default function ContextList({ onEdit, onDelete }: ContextListProps) {
   if (contexts.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-700 text-lg font-semibold">还没有上下文</p>
-        <p className="text-gray-600 text-sm mt-2">点击"创建上下文"开始使用</p>
+        <p className="text-gray-700 text-lg font-semibold">No contexts yet</p>
+        <p className="text-gray-600 text-sm mt-2">Click "Create Context" to get started</p>
       </div>
     );
   }

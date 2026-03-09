@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "上下文暂存与恢复 - 开发者效率工具",
-  description: "减少上下文切换损失，保持心流状态",
+  title: "Context Pause & Resume",
+  description: "Reduce context switching loss and maintain flow state",
 };
 
 export default function RootLayout({

@@ -32,25 +32,25 @@ export default function SnippetCard({ snippet, onEdit, onDelete, onCopy }: Snipp
             onClick={() => onEdit(snippet)}
             className="text-blue-700 hover:text-blue-800 text-sm font-semibold"
           >
-            编辑
+            Edit
           </button>
           <button
             onClick={() => onCopy(snippet.content)}
             className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 text-sm font-semibold"
           >
-            复制
+            Copy
           </button>
           <button
             onClick={() => onDelete(snippet.id)}
             className="text-red-700 hover:text-red-800 text-sm font-semibold"
           >
-            删除
+            Delete
           </button>
         </div>
       </div>
 
       <div className="mb-3">
-        <h4 className="text-sm font-bold text-gray-800 mb-2">内容:</h4>
+        <h4 className="text-sm font-bold text-gray-800 mb-2">Content:</h4>
         <div className="bg-gray-100 border border-gray-200 p-3 rounded font-mono text-sm max-h-40 overflow-auto">
           {snippet.content}
         </div>
@@ -58,7 +58,7 @@ export default function SnippetCard({ snippet, onEdit, onDelete, onCopy }: Snipp
 
       {snippet.tags && snippet.tags.length > 0 && (
         <div className="mb-3">
-          <h4 className="text-sm font-bold text-gray-800 mb-2">标签:</h4>
+          <h4 className="text-sm font-bold text-gray-800 mb-2">Tags:</h4>
           <div className="flex flex-wrap gap-2">
             {snippet.tags.map((tag, index) => (
               <span
@@ -73,7 +73,7 @@ export default function SnippetCard({ snippet, onEdit, onDelete, onCopy }: Snipp
       )}
 
       <div className="text-xs text-gray-600 pt-3 border-t border-gray-300">
-        <p>创建时间: {new Date(snippet.createdAt).toLocaleString('zh-CN')}</p>
+        <p>Created: {new Date(snippet.createdAt).toLocaleString()}</p>
       </div>
     </div>
   );
