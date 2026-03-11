@@ -1,0 +1,172 @@
+{
+  "tasks": {
+    "task_0001": {
+      "id": "task_0001",
+      "title": "实现记忆搜索功能",
+      "description": "开发关键词搜索功能",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "in_progress",
+      "created_at": "2026-03-10T11:53:37.870712",
+      "due_at": "2026-03-12T11:53:37.870712",
+      "started_at": "2026-03-10T11:53:37.890804",
+      "completed_at": null,
+      "dependencies": [],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0002": {
+      "id": "task_0002",
+      "title": "编写测试用例",
+      "description": "为搜索功能编写单元测试",
+      "assigned_to": "agent_qa",
+      "priority": "p2",
+      "status": "pending",
+      "created_at": "2026-03-10T11:53:37.880265",
+      "due_at": "2026-03-12T23:53:37.880265",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0001"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0003": {
+      "id": "task_0003",
+      "title": "开发记忆系统搜索功能",
+      "description": "实现关键词搜索、日期范围搜索功能，使用 Python 开发",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-10T11:54:20.479073",
+      "due_at": "2026-03-12T11:54:20.479073",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0004": {
+      "id": "task_0004",
+      "title": "实现核心搜索算法",
+      "description": "开发关键词匹配和上下文提取功能",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-10T11:54:20.491290",
+      "due_at": "2026-03-12T23:54:20.491290",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0003"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0005": {
+      "id": "task_0005",
+      "title": "编写单元测试",
+      "description": "为搜索功能编写测试用例",
+      "assigned_to": "agent_qa",
+      "priority": "p2",
+      "status": "pending",
+      "created_at": "2026-03-10T11:54:20.503093",
+      "due_at": "2026-03-12T17:54:20.503093",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0003"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0006": {
+      "id": "task_0006",
+      "title": "开发安全扫描脚本",
+      "description": "开发木马病毒检测、恶意文件识别、可疑代码扫描脚本",
+      "assigned_to": "agent_dev",
+      "priority": "p0",
+      "status": "completed",
+      "created_at": "2026-03-11T08:25:00.000000",
+      "due_at": "2026-03-12T08:25:00.000000",
+      "started_at": "2026-03-11T08:27:00.000000",
+      "completed_at": "2026-03-11T08:40:00.000000",
+      "dependencies": [],
+      "progress": 100,
+      "result": "Created security-scan.ps1 with suspicious extension detection, sensitive data scanning, npm audit, and recent file monitoring. Report saved to memory/security-scan-2026-03-11.md",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0007": {
+      "id": "task_0007",
+      "title": "配置定期安全排查",
+      "description": "设置每周自动安全扫描 cron 任务，包含依赖审计、配置文件检查、恶意文件检测",
+      "assigned_to": "agent_sec",
+      "priority": "p0",
+      "status": "pending",
+      "created_at": "2026-03-11T08:25:00.000000",
+      "due_at": "2026-03-13T08:25:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0006"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0008": {
+      "id": "task_0008",
+      "title": "建立安全响应机制",
+      "description": "制定安全事件响应流程：可疑文件隔离、风险警告、修复建议生成",
+      "assigned_to": "agent_sec",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-11T08:25:00.000000",
+      "due_at": "2026-03-14T08:25:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0006"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    }
+  },
+  "queue": {
+    "pending": [
+      "task_0002",
+      "task_0003",
+      "task_0004",
+      "task_0005",
+      "task_0007",
+      "task_0008"
+    ],
+    "in_progress": [
+      "task_0001"
+    ],
+    "completed": [
+      "task_0006"
+    ],
+    "failed": []
+  },
+  "stats": {
+    "total": 8,
+    "completed": 1,
+    "failed": 0
+  }
+}
