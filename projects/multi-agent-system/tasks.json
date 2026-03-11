@@ -114,16 +114,16 @@
       "description": "设置每周自动安全扫描 cron 任务，包含依赖审计、配置文件检查、恶意文件检测",
       "assigned_to": "agent_sec",
       "priority": "p0",
-      "status": "pending",
+      "status": "completed",
       "created_at": "2026-03-11T08:25:00.000000",
       "due_at": "2026-03-13T08:25:00.000000",
-      "started_at": null,
-      "completed_at": null,
+      "started_at": "2026-03-11T08:43:00.000000",
+      "completed_at": "2026-03-11T08:44:00.000000",
       "dependencies": [
         "task_0006"
       ],
-      "progress": 0,
-      "result": null,
+      "progress": 100,
+      "result": "Created security-cron.json with weekly schedule (Mon 09:00), scan paths configured, exclusions set (node_modules, .git, dist, build), report output to memory/security-report-YYYY-MM-DD.md, high-severity alerts enabled",
       "error": null,
       "retry_count": 0
     },
@@ -153,20 +153,20 @@
       "task_0003",
       "task_0004",
       "task_0005",
-      "task_0007",
       "task_0008"
     ],
     "in_progress": [
       "task_0001"
     ],
     "completed": [
-      "task_0006"
+      "task_0006",
+      "task_0007"
     ],
     "failed": []
   },
   "stats": {
     "total": 8,
-    "completed": 1,
+    "completed": 2,
     "failed": 0
   }
 }
