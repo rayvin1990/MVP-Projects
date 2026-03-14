@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "name": "mvp-projects",
+      "path": "invoice-generator"
+    },
+    {
+      "name": "mvp-projects-1sy6",
+      "path": "lesson-balance"
+    },
+    {
+      "name": "mvp-projects-fsxy",
+      "path": "mood-food-recommender"
+    }
+  ]
+}

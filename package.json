@@ -1,0 +1,11 @@
+{
+  "name": "mvp-projects",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo containing multiple MVP projects",
+  "scripts": {
+    "build:invoice": "cd invoice-generator && npm install && npm run build",
+    "build:lesson": "cd lesson-balance && npm install && npm run build",
+    "build:mood-food": "cd mood-food-recommender && npm install && npm run build"
+  }
+}
