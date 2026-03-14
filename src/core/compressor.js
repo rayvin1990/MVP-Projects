@@ -1,8 +1,11 @@
-import config from '../config/index.js';
+import config from '../../config/index.js';
+import VectorStore from '../utils/vector-store.js';
+import EmbeddingService from '../utils/embedding-service.js';
 
 /**
  * Context Compression Core Module
  * Handles summary-based compression of AI conversation context
+ * V2.0: Added vector storage and semantic retrieval
  * MVP: Single agent, summary compression, key info preservation
  */
 
@@ -19,6 +22,15 @@ class ContextCompressor {
     
     // Key information to preserve (extracted from conversations)
     this.keyInfo = new Map();
+    
+    // Vector store for semantic retrieval (V2.0)
+    this.vectorStore = new VectorStore(options.vectorStore);
+    this.embeddingService = new EmbeddingService(options.embedding);
+    
+    // Enable vector retrieval
+    this.enableVectorRetrieval = options.enableVectorRetrieval !== undefined
+      ? options.enableVectorRetrieval
+      : true;
   }
 
   /**
@@ -204,6 +216,116 @@ class ContextCompressor {
    */
   getAllSessions() {
     return this.sessions;
+  }
+
+  /**
+   * Store compressed context in vector store for semantic retrieval
+   * @param {string} conversationId - Conversation ID
+   * @param {Object} compressionResult - Compression result with summary and keyInfo
+   * @returns {Promise<boolean>} Success status
+   */
+  async storeInVectorStore(conversationId, compressionResult) {
+    if (!this.enableVectorRetrieval) return false;
+
+    try {
+      // Store the summary
+      await this.vectorStore.addText(
+        `${conversationId}_summary`,
+        compressionResult.summary,
+        {
+          type: 'summary',
+          conversationId,
+          originalLength: compressionResult.originalLength,
+          compressedLength: compressionResult.compressedLength,
+        }
+      );
+
+      // Store key information items
+      if (compressionResult.keyInfo && compressionResult.keyInfo.length > 0) {
+        const keyItems = compressionResult.keyInfo.map((item, index) => ({
+          id: `${conversationId}_key_${index}`,
+          text: item.content,
+          metadata: {
+            type: 'key_info',
+            conversationId,
+            itemType: item.type,
+            source: item.source,
+          },
+        }));
+
+        await this.vectorStore.addBatch(keyItems);
+      }
+
+      console.log(`Stored compression result in vector store: ${conversationId}`);
+      return true;
+    } catch (error) {
+      console.error('Failed to store in vector store:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Retrieve relevant context using semantic search
+   * @param {string} query - Search query
+   * @param {string} conversationId - Optional conversation ID filter
+   * @param {number} limit - Number of results
+   * @returns {Promise<Array>} Relevant context items
+   */
+  async retrieveContext(query, conversationId = null, limit = 5) {
+    if (!this.enableVectorRetrieval) {
+      return [];
+    }
+
+    try {
+      const results = await this.vectorStore.search(query, limit);
+      
+      // Filter by conversation ID if provided
+      if (conversationId) {
+        return results.filter(item => 
+          item.metadata?.conversationId === conversationId
+        );
+      }
+
+      return results;
+    } catch (error) {
+      console.error('Vector retrieval failed:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Get vector store statistics
+   * @returns {Promise<Object>} Stats
+   */
+  async getVectorStoreStats() {
+    return await this.vectorStore.getStats();
+  }
+
+  /**
+   * Clear vector store for a conversation
+   * @param {string} conversationId - Conversation ID
+   * @returns {Promise<boolean>} Success status
+   */
+  async clearVectorStore(conversationId) {
+    try {
+      // Delete all items related to this conversation
+      // Note: This requires iterating and deleting individually in MVP
+      // In production, use filtered delete
+      const session = this.sessions.get(conversationId);
+      if (session) {
+        await this.vectorStore.delete(`${conversationId}_summary`);
+        
+        if (session.keyInfo) {
+          for (let i = 0; i < session.keyInfo.length; i++) {
+            await this.vectorStore.delete(`${conversationId}_key_${i}`);
+          }
+        }
+      }
+      return true;
+    } catch (error) {
+      console.error('Failed to clear vector store:', error);
+      return false;
+    }
   }
 }
 

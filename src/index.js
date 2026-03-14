@@ -1,27 +1,40 @@
 import ContextCompressor from './core/compressor.js';
 import SessionManager from './core/session-manager.js';
 import QwenClient from './api/qwen.js';
+import VectorStore from './utils/vector-store.js';
+import EmbeddingService from './utils/embedding-service.js';
 import config from '../config/index.js';
 
 /**
  * Context Compression MVP
  * Main entry point - integrates compression, session management, and Qwen API
+ * V2.0: Added vector storage and semantic retrieval
  */
 
 class ContextCompressionMVP {
   constructor(options = {}) {
     // Initialize components
     this.qwen = new QwenClient(options.qwen);
-    this.compressor = new ContextCompressor(options.compressor);
+    this.compressor = new ContextCompressor({
+      ...options.compressor,
+      enableVectorRetrieval: options.enableVectorRetrieval !== undefined 
+        ? options.enableVectorRetrieval 
+        : true,
+    });
     this.sessionManager = new SessionManager(options.sessionManager);
     
     // Compression trigger threshold
     this.compressionThreshold = options.compressionThreshold || config.app.maxContextLength;
     
-    console.log('Context Compression MVP initialized');
+    // Vector store for semantic retrieval
+    this.vectorStore = new VectorStore(options.vectorStore);
+    this.embeddingService = new EmbeddingService(options.embedding);
+    
+    console.log('Context Compression MVP initialized (V2.0 with Vector Storage)');
     console.log(`  - Qwen Model: ${config.qwen.model}`);
     console.log(`  - Max Context Length: ${config.app.maxContextLength}`);
     console.log(`  - Compression Ratio: ${config.app.compressionRatio}`);
+    console.log(`  - Vector Retrieval: ${options.enableVectorRetrieval !== false ? 'enabled' : 'disabled'}`);
   }
 
   /**
@@ -60,12 +73,16 @@ class ContextCompressionMVP {
         compressionRatio: result.compressionRatio,
       });
       
+      // Store in vector store for semantic retrieval
+      await this.compressor.storeInVectorStore(sessionId, result);
+      
       return {
         sessionId,
         context: result.context,
         compressed: true,
         summary: result.summary,
         keyInfo: result.keyInfo,
+        vectorStored: true,
         stats: {
           originalLength: result.originalLength,
           compressedLength: result.compressedLength,
@@ -164,23 +181,49 @@ class ContextCompressionMVP {
   }
 
   /**
+   * Retrieve relevant context using semantic search
+   * @param {string} query - Search query
+   * @param {string} sessionId - Optional session ID filter
+   * @param {number} limit - Number of results
+   * @returns {Promise<Array>} Relevant context items
+   */
+  async retrieveContext(query, sessionId = null, limit = 5) {
+    return await this.compressor.retrieveContext(query, sessionId, limit);
+  }
+
+  /**
+   * Get vector store statistics
+   * @returns {Promise<Object>} Stats
+   */
+  async getVectorStoreStats() {
+    return await this.compressor.getVectorStoreStats();
+  }
+
+  /**
    * Health check
    * @returns {Promise<Object>} Health status
    */
   async healthCheck() {
     const qwenHealth = await this.qwen.healthCheck();
+    const embeddingHealth = await this.embeddingService.healthCheck();
+    const vectorStoreStats = await this.compressor.getVectorStoreStats();
     
     return {
       status: 'ok',
       timestamp: Date.now(),
+      version: '2.0.0',
       components: {
         qwen: qwenHealth ? 'healthy' : 'degraded',
         compressor: 'healthy',
         sessionManager: 'healthy',
+        embedding: embeddingHealth.status,
+        vectorStore: vectorStoreStats.isInitialized ? 'healthy' : 'degraded',
       },
+      vectorStore: vectorStoreStats,
       config: {
         model: config.qwen.model,
         maxContextLength: config.app.maxContextLength,
+        embeddingModel: config.embedding.model,
       },
     };
   }
@@ -190,4 +233,4 @@ class ContextCompressionMVP {
 export default ContextCompressionMVP;
 
 // Also export individual components for advanced usage
-export { ContextCompressor, SessionManager, QwenClient, config };
+export { ContextCompressor, SessionManager, QwenClient, VectorStore, EmbeddingService, config };

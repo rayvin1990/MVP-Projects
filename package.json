@@ -1,7 +1,7 @@
 {
   "name": "context-compression-mvp",
-  "version": "1.0.0",
-  "description": "AI Agent Context Compression MVP - Summary-based context management",
+  "version": "2.0.0",
+  "description": "AI Agent Context Compression - V2.0 with Vector Storage and Semantic Retrieval",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -13,17 +13,16 @@
     "ai",
     "context",
     "compression",
-    "mem0",
+    "vector",
+    "chromadb",
+    "embedding",
     "qwen"
   ],
   "author": "Codex",
   "license": "MIT",
   "dependencies": {
-    "mem0": "^0.1.0",
     "chromadb": "^1.8.0",
     "dotenv": "^16.4.0"
   },
-  "devDependencies": {
-    "jest": "^29.7.0"
-  }
+  "devDependencies": {}
 }

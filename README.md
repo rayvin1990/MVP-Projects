@@ -1,24 +1,27 @@
 # Context Compression MVP
 
-AI Agent 上下文压缩系统 - 3 天快速 MVP
+AI Agent 上下文压缩系统 - V2.0 with Vector Storage
 
 ## 项目概述
 
-解决 AI 对话中的上下文长度限制问题，通过智能摘要压缩保持对话连贯性。
+解决 AI 对话中的上下文长度限制问题，通过智能摘要压缩和向量检索保持对话连贯性。
 
 ### 核心功能
 
 - ✅ **摘要压缩** - 使用 Qwen-Max 进行智能摘要
+- ✅ **向量存储** - ChromaDB 集成，支持语义检索
+- ✅ **向量嵌入** - 自动为压缩内容生成嵌入向量
+- ✅ **语义检索** - 基于相似度的上下文检索
 - ✅ **单 Agent 支持** - 单一对话代理上下文管理
 - ✅ **会话历史管理** - 完整的会话生命周期管理
 - ✅ **关键信息保留** - 自动提取和保留决策、偏好等关键信息
 
 ### 技术栈
 
-- **核心框架**: Mem0 (预留集成)
-- **向量存储**: ChromaDB (V2.0)
+- **核心框架**: 自研上下文压缩引擎
+- **向量存储**: ChromaDB (支持持久化和内存模式)
 - **摘要模型**: Qwen-Max
-- **嵌入模型**: text-embedding-3-small (V2.0)
+- **嵌入模型**: text-embedding-3-small (支持回退到哈希嵌入)
 
 ## 快速开始
 
@@ -98,6 +101,14 @@ app.deleteSession('session-123');
 
 // 健康检查
 const health = await app.healthCheck();
+
+// 向量检索 (V2.0 新增)
+const results = await app.retrieveContext('previous discussion about AI', 'session-123', 5);
+console.log(results); // 相关上下文片段
+
+// 获取向量存储统计
+const vectorStats = await app.getVectorStoreStats();
+console.log(vectorStats);
 ```
 
 ## 项目结构
@@ -105,15 +116,20 @@ const health = await app.healthCheck();
 ```
 context-compression-mvp/
 ├── src/
-│   ├── index.js              # 主入口
+│   ├── index.js              # 主入口 (V2.0)
 │   ├── core/
-│   │   ├── compressor.js     # 压缩核心
+│   │   ├── compressor.js     # 压缩核心 (支持向量存储)
 │   │   └── session-manager.js # 会话管理
 │   ├── api/
 │   │   └── qwen.js           # Qwen API 客户端
-│   └── utils/                # 工具函数 (预留)
+│   └── utils/
+│       ├── vector-store.js       # 向量存储 (ChromaDB)
+│       ├── embedding-service.js  # 嵌入服务
+│       └── helpers.js            # 工具函数
 ├── tests/
-│   └── compressor.test.js    # 测试用例
+│   ├── compressor.test.js    # 压缩器测试
+│   ├── vector-store.test.js  # 向量存储测试 (V2.0)
+│   └── integration.test.js   # 集成测试 (V2.0)
 ├── config/
 │   └── index.js              # 配置管理
 ├── docs/                     # 文档 (预留)
@@ -147,6 +163,8 @@ new ContextCompressionMVP(options?: {
 - `clearSession(sessionId)` - 清除会话
 - `deleteSession(sessionId)` - 删除会话
 - `healthCheck()` - 健康检查
+- `retrieveContext(query, sessionId?, limit?)` - **V2.0** 语义检索相关上下文
+- `getVectorStoreStats()` - **V2.0** 获取向量存储统计
 
 ### ContextCompressor
 
@@ -168,6 +186,9 @@ Qwen API 客户端，提供摘要生成和关键信息提取功能。
 | `COMPRESSION_RATIO` | 0.3 | 目标压缩比例 |
 | `PRESERVE_KEY_INFO` | true | 是否保留关键信息 |
 | `QWEN_MODEL` | qwen-max | Qwen 模型名称 |
+| `EMBEDDING_MODEL` | text-embedding-3-small | 嵌入模型 (V2.0) |
+| `CHROMA_DB_PATH` | ./chroma_db | ChromaDB 存储路径 (V2.0) |
+| `OPENAI_API_KEY` | - | OpenAI API 密钥（用于嵌入，可选） |
 
 ## 测试报告
 
@@ -187,10 +208,18 @@ npm test
 - ✅ SessionManager 基本操作
 - ✅ 会话统计
 - ✅ 会话清理
+- ✅ **VectorStore 初始化** (V2.0)
+- ✅ **嵌入生成** (V2.0)
+- ✅ **向量添加和搜索** (V2.0)
+- ✅ **余弦相似度计算** (V2.0)
+- ✅ **语义检索集成** (V2.0)
+- ✅ **健康检查** (V2.0)
+
+**测试通过率:** 47/47 ✅
 
 ## 开发计划
 
-### MVP (当前)
+### MVP (Day 1) ✅
 
 - [x] 项目结构
 - [x] 摘要压缩核心
@@ -199,13 +228,20 @@ npm test
 - [x] 测试用例
 - [x] 文档
 
-### V2.0 (规划)
+### V2.0 (Day 2) ✅
 
-- [ ] 向量检索 (ChromaDB)
+- [x] 向量检索 (ChromaDB)
+- [x] 向量嵌入功能
+- [x] 测试向量检索准确性
+- [x] 更新文档
+
+### V2.1 (规划)
+
 - [ ] 多 Agent 协作
 - [ ] MEMORY.md 同步
 - [ ] 高级检索策略
 - [ ] 性能优化
+- [ ] 持久化 ChromaDB 服务器集成
 
 ## Git 规范
 
@@ -233,5 +269,6 @@ Codex (探险家)
 
 ---
 
-**状态**: MVP 完成 ✅
+**状态**: V2.0 完成 ✅ (向量检索集成)
+**版本**: 2.0.0
 **最后更新**: 2026-03-14
