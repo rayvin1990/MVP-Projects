@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import {
   ReactFlow,
   Background,
@@ -16,8 +16,8 @@ interface CodeFlowProps {
 }
 
 export function CodeFlow({ nodes: initialNodes, edges: initialEdges }: CodeFlowProps) {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
   const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
     console.log('Node clicked:', node);
