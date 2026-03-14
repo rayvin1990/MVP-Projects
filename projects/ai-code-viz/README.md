@@ -7,6 +7,30 @@
 
 ---
 
+## 🚀 快速开始
+
+### 安装依赖
+```bash
+npm install
+```
+
+### 启动开发服务器
+```bash
+npm run dev
+```
+
+### 构建生产版本
+```bash
+npm run build
+```
+
+### 预览生产构建
+```bash
+npm run preview
+```
+
+---
+
 ## 🎯 项目目标
 
 解决 Vibe Coding 后遗症状：
@@ -40,13 +64,14 @@
 
 ## 🏗️ 技术栈
 
-| 层级 | 技术 |
-|------|------|
-| **前端框架** | React 18 + Vite |
-| **可视化库** | React Flow / Cytoscape.js |
-| **样式** | TailwindCSS 4 |
-| **部署** | Vercel |
-| **语言分析** | Tree-sitter (WASM) |
+| 层级 | 技术 | 版本 |
+|------|------|------|
+| **前端框架** | React + Vite | 19.x / 7.x |
+| **可视化库** | React Flow | 12.x |
+| **样式** | TailwindCSS | 4.x |
+| **语言** | TypeScript | 5.9.x |
+| **部署** | Vercel | - |
+| **语言分析** | Tree-sitter (WASM) | TBD |
 
 ---
 
@@ -78,14 +103,37 @@
 ai-code-viz/
 ├── src/
 │   ├── components/      # React 组件
+│   │   ├── CodeFlow.tsx    # 代码流程图组件
+│   │   └── index.ts
 │   ├── hooks/           # 自定义 Hooks
+│   ├── types/           # TypeScript 类型定义
+│   │   └── index.ts
 │   ├── utils/           # 工具函数
-│   └── App.tsx
+│   │   └── mockData.ts  # 示例数据
+│   ├── App.tsx          # 主应用组件
+│   ├── App.css
+│   ├── main.tsx         # 入口文件
+│   └── index.css        # 全局样式
 ├── docs/                # 项目文档
+│   └── task-001-architecture.md
 ├── public/
 ├── package.json
+├── vite.config.ts
+├── tsconfig.json
 └── README.md
 ```
+
+---
+
+## 📊 当前进度
+
+| 任务 | 状态 | 完成时间 |
+|------|------|----------|
+| Task 001: 架构设计 | 🟡 待开始 | - |
+| Task 002: 项目初始化 | 🟢 进行中 | - |
+| Task 003: 核心组件开发 | ⚪ 未开始 | - |
+| Task 004: 代码解析器 | ⚪ 未开始 | - |
+| Task 005: 测试与部署 | ⚪ 未开始 | - |
 
 ---
 
