@@ -1,0 +1,20 @@
+# 排除嵌入式 git 仓库
+context-compression-mvp/
+projects/ContextCapsule/
+projects/MVP-Projects/
+projects/ai-code-viz-poc/
+projects/ai-code-viz/
+projects/zhuangmei/
+projects/feishu-security/
+projects/invoice-quick-test/
+projects/context-capsule/
+projects/ai-council/
+projects/company/
+
+# 排除 node_modules
+node_modules/
+
+# 排除临时文件
+*.log
+.tmp/
+temp/

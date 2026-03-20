@@ -1,0 +1,12 @@
+﻿SECURITY ALERT
+Time: 2026-03-11 10:12:19
+Severity: CRITICAL
+Type: [HIGH] Process Threat - BlacklistedProcess
+
+Malicious process detected: malware_test.exe (PID: 12345)
+
+Actions Executed:
+Process termination failed
+
+Actions Executed:
+Process termination failed

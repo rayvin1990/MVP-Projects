@@ -1,0 +1,92 @@
+﻿{
+  "version": "1.3.0",
+  "updated": "2026-03-11T10:07:00+08:00",
+  "description": "Environment Monitor Config - Auto-Respond Enabled",
+  "whitelist": {
+    "paths": [
+      "C:\\Users\\57684\\.openclaw\\workspace\\",
+      "C:\\Users\\57684\\.openclaw\\workspace\\projects\\",
+      "C:\\Users\\57684\\.openclaw\\workspace\\quarantine\\",
+      "C:\\Users\\57684\\.openclaw\\workspace\\projects\\multi-agent-system\\quarantine\\",
+      "C:\\Users\\57684\\.openclaw\\workspace\\projects\\ContextCapsule\\",
+      "C:\\Users\\57684\\projects\\",
+      "C:\\Users\\57684\\source\\",
+      "C:\\Users\\57684\\dev\\",
+      "C:\\Users\\57684\\code\\",
+      "C:\\Users\\57684\\.claude\\",
+      "C:\\Users\\57684\\AppData\\Roaming\\npm\\node_modules\\@anthropic\\",
+      "C:\\Users\\57684\\AppData\\Roaming\\npm\\node_modules\\acpx\\",
+      "C:\\Users\\57684\\AppData\\Local\\Programs\\Claude\\"
+    ],
+    "processes": [
+      "node.exe",
+      "node32.exe",
+      "python.exe",
+      "pythonw.exe",
+      "py.exe",
+      "git.exe",
+      "git-bash.exe",
+      "git-credential-manager.exe",
+      "code.exe",
+      "code-insiders.exe",
+      "notepad++.exe",
+      "sublime_text.exe",
+      "chrome.exe",
+      "msedge.exe",
+      "firefox.exe",
+      "npm.exe",
+      "npx.exe",
+      "yarn.exe",
+      "pnpm.exe",
+      "webpack.exe",
+      "vite.exe",
+      "powershell.exe",
+      "pwsh.exe",
+      "cmd.exe",
+      "wt.exe",
+      "openclaw.exe",
+      "gateway.exe",
+      "claude.exe",
+      "acpx.exe"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "alertOnUnknown": true,
+    "quarantineDir": "C:\\Users\\57684\\.openclaw\\workspace\\quarantine\\",
+    "excludedDirs": [
+      "C:\\Users\\57684\\.openclaw\\workspace\\quarantine\\"
+    ],
+    "monitoredExternalDirs": [
+      "C:\\Users\\57684\\Downloads\\",
+      "C:\\Users\\57684\\Desktop\\",
+      "C:\\Users\\57684\\Documents\\"
+    ]
+  },
+  "autoRespond": {
+    "enabled": true,
+    "highThreat": {
+      "killProcess": true,
+      "quarantineFile": true,
+      "blockNetwork": true,
+      "alertUser": true
+    },
+    "mediumThreat": {
+      "suspendProcess": true,
+      "markFile": true,
+      "alertUser": true,
+      "waitForConfirm": true
+    }
+  },
+  "restrictedZones": {
+    "C:\\Windows": {
+      "scanOnly": true,
+      "noAction": true,
+      "noQuarantine": true,
+      "noKill": true,
+      "noBlock": true,
+      "alertOnly": true,
+      "reason": "系统核心目录 - 仅管理员有权限操作"
+    }
+  }
+}

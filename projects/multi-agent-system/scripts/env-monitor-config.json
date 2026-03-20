@@ -1,0 +1,87 @@
+{
+  "monitoring": {
+    "enabled": true,
+    "interval_seconds": 30,
+    "log_path": "C:\\Users\\57684\\.openclaw\\workspace\\projects\\multi-agent-system\\logs",
+    "alert_email": "",
+    "alert_webhook": ""
+  },
+  "file_watcher": {
+    "enabled": true,
+    "directories": [
+      "C:\\Users\\57684\\Downloads",
+      "C:\\Users\\57684\\Desktop",
+      "C:\\Users\\57684\\Documents",
+      "C:\\Users\\57684\\.openclaw\\workspace",
+      "C:\\Users\\57684\\.openclaw\\workspace\\projects"
+    ],
+    "suspicious_extensions": [
+      ".exe", ".bat", ".cmd", ".scr", ".vbs", ".hta", ".lnk", ".ps1",
+      ".msi", ".dll", ".sys", ".com", ".pif", ".jar", ".wsf"
+    ],
+    "watch_subdirectories": true,
+    "hash_algorithm": "SHA256",
+    "malware_hash_db": "malware-hashes.txt"
+  },
+  "process_analyzer": {
+    "enabled": true,
+    "check_interval_seconds": 60,
+    "cpu_threshold_percent": 80,
+    "memory_threshold_percent": 70,
+    "check_unknown_signatures": true,
+    "monitor_child_processes": true,
+    "whitelist_processes": [
+      "System", "Idle", "svchost.exe", "explorer.exe", "chrome.exe",
+      "Code.exe", "node.exe", "powershell.exe", "cmd.exe"
+    ]
+  },
+  "network_monitor": {
+    "enabled": true,
+    "check_interval_seconds": 30,
+    "blocked_ports": [23, 445, 3389, 4444, 5555, 6666],
+    "suspicious_ports": [4444, 5555, 6666, 7777, 8888, 9999],
+    "blocked_domains": [],
+    "monitor_dns_queries": true,
+    "log_connections": true
+  },
+  "system_checker": {
+    "enabled": true,
+    "check_interval_minutes": 60,
+    "check_registry_run": true,
+    "check_startup_folder": true,
+    "check_scheduled_tasks": true,
+    "check_services": true,
+    "check_file_associations": true,
+    "known_bad_registry_keys": [
+      "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+    ]
+  },
+  "scanner": {
+    "daily_quick_scan": {
+      "enabled": true,
+      "time": "02:00",
+      "directories": [
+        "C:\\Users\\57684\\Downloads",
+        "C:\\Users\\57684\\Desktop"
+      ]
+    },
+    "weekly_full_scan": {
+      "enabled": true,
+      "day": "Sunday",
+      "time": "03:00",
+      "directories": [
+        "C:\\Users\\57684",
+        "C:\\ProgramData"
+      ]
+    },
+    "generate_report": true,
+    "report_path": "reports"
+  },
+  "security": {
+    "quarantine_path": "C:\\Users\\57684\\.openclaw\\workspace\\projects\\multi-agent-system\\quarantine",
+    "auto_quarantine": false,
+    "max_log_size_mb": 100,
+    "log_retention_days": 30
+  }
+}

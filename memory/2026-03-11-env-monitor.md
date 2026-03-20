@@ -1,0 +1,139 @@
+# EnvMonitor - Local Environment Security Monitoring System
+
+**Date:** 2026-03-11  
+**Task:** task_0009  
+**Status:** COMPLETED
+
+---
+
+## Summary
+
+Developed a comprehensive local environment security monitoring system using PowerShell scripts. The system monitors files, processes, network connections, and system configuration to detect potential security threats.
+
+---
+
+## Deliverables Created
+
+### 1. env-monitor.ps1 (Main Script)
+- Interactive dashboard with menu system
+- Full system scan capability
+- Real-time monitoring modes
+- Report generation
+- **Location:** `projects/multi-agent-system/scripts/env-monitor.ps1`
+
+### 2. file-watcher.ps1 (File Monitoring Module)
+- Monitors: Downloads, Desktop, Documents, workspace, projects
+- Detects suspicious extensions: .exe, .bat, .cmd, .scr, .vbs, .hta, .lnk, .ps1, .msi, .dll, .jar, etc.
+- SHA256 hash comparison against malware database
+- Real-time file system watching with FileSystemWatcher
+- **Location:** `projects/multi-agent-system/scripts/file-watcher.ps1`
+
+### 3. process-analyzer.ps1 (Process Analysis Module)
+- Lists all running processes with detailed info
+- Detects high CPU/memory usage processes
+- Identifies suspicious processes (unknown signatures, temp directory locations)
+- Configurable whitelist for trusted processes
+- **Location:** `projects/multi-agent-system/scripts/process-analyzer.ps1`
+
+### 4. network-monitor.ps1 (Network Monitoring Module)
+- Monitors all TCP connections
+- Detects suspicious ports (4444, 5555, 6666, etc.)
+- Identifies unknown processes making network connections
+- Can block malicious ports via firewall rules (requires admin)
+- **Location:** `projects/multi-agent-system/scripts/network-monitor.ps1`
+
+### 5. system-checker.ps1 (System Configuration Module)
+- Checks registry Run keys for persistence
+- Scans startup folders
+- Analyzes scheduled tasks
+- Reviews running services
+- Checks file associations
+- **Location:** `projects/multi-agent-system/scripts/system-checker.ps1`
+
+### 6. env-monitor-config.json (Configuration)
+- Centralized configuration for all modules
+- Customizable thresholds and intervals
+- Directory lists and extension filters
+- **Location:** `projects/multi-agent-system/scripts/env-monitor-config.json`
+
+---
+
+## Demo Results
+
+### File Scan (Partial)
+- **Downloads:** Detected 5 suspicious files (.msi, .exe, .bat, .jar)
+- **Desktop:** Detected 45+ suspicious files (mostly .lnk shortcuts and .bat files)
+- **Documents:** Detected 5 suspicious files (QQ/WeChat components, PowerShell profile)
+
+### Process Analysis
+- **Total processes:** 341
+- **High resource:** 20 processes (chrome, node, Weixin, wps, etc.)
+- **Suspicious:** 12 processes with unknown signatures (system processes like csrss, dwm, winlogon, etc.)
+
+Note: Many "suspicious" detections are false positives for legitimate system processes. The whitelist should be expanded for production use.
+
+---
+
+## Directory Structure
+
+```
+projects/multi-agent-system/
+├── scripts/
+│   ├── env-monitor.ps1          # Main script
+│   ├── file-watcher.ps1         # File monitoring
+│   ├── process-analyzer.ps1     # Process analysis
+│   ├── network-monitor.ps1      # Network monitoring
+│   ├── system-checker.ps1       # System checker
+│   ├── env-monitor-config.json  # Configuration
+│   └── malware-hashes.txt       # Malware hash database
+├── logs/                        # Log files
+├── quarantine/                  # Quarantined files
+└── reports/                     # Generated reports
+```
+
+---
+
+## Usage
+
+### Interactive Mode
+```powershell
+cd projects/multi-agent-system/scripts
+.\env-monitor.ps1
+```
+
+### Command Line Modes
+```powershell
+.\env-monitor.ps1 -Mode dashboard   # Security dashboard
+.\env-monitor.ps1 -Mode scan        # Full system scan
+.\env-monitor.ps1 -Mode watch       # Real-time file monitoring
+.\env-monitor.ps1 -Mode analyze     # Process analysis
+.\env-monitor.ps1 -Mode network     # Network check
+.\env-monitor.ps1 -Mode system      # System configuration check
+.\env-monitor.ps1 -Mode report      # Generate report
+```
+
+---
+
+## Next Steps / Recommendations
+
+1. **Expand process whitelist** - Add common system processes to reduce false positives
+2. **Populate malware hash database** - Add real malware signatures from threat intelligence sources
+3. **Add Windows Defender integration** - Use MDATP/Defender APIs for enhanced detection
+4. **Set up scheduled tasks** - Configure daily quick scans and weekly full scans
+5. **Add alerting** - Integrate email/webhook notifications for critical alerts
+6. **Improve network monitoring** - Add DNS query monitoring and domain blocking
+
+---
+
+## Security Notes
+
+- Scripts require PowerShell execution policy bypass for first run:
+  ```powershell
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  ```
+- Network blocking features require Administrator privileges
+- Some process/network queries may require elevated permissions
+
+---
+
+*Generated by EnvMonitor development session*

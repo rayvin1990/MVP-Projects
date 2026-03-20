@@ -1,0 +1,244 @@
+{
+  "system": {
+    "name": "Commander-X Multi-Agent System",
+    "version": "2.0",
+    "workspace": "C:\\Users\\Administrator\\.openclaw\\workspace",
+    "principle": "纯管理，不执行 - 基于飞书文档设计"
+  },
+  
+  "commander_x": {
+    "id": "commander_x",
+    "name": "Commander-X",
+    "role": "commander",
+    "description": "纯管理者和战略规划者，严禁动手执行具体任务",
+    "forbidden_actions": [
+      "write_code",
+      "run_command", 
+      "modify_file",
+      "execute_task",
+      "generate_content"
+    ],
+    "allowed_actions": [
+      "delegate_task",
+      "accept_result",
+      "reject_result",
+      "next_step",
+      "audit_compliance"
+    ],
+    "self_check": {
+      "enabled": true,
+      "interval_minutes": 10,
+      "questions": [
+        "我是在指派工作，还是我自己在干活？",
+        "任务是否分配给了正确的 Agent？",
+        "是否违反了绝对禁令？"
+      ]
+    }
+  },
+  
+  "agents": [
+    {
+      "id": "agent_researcher",
+      "name": "需求&SEO Agent",
+      "role": "researcher",
+      "description": "Reddit 痛点挖掘、SEO 关键词提取",
+      "skills": ["reddit", "seo", "market_research", "keyword_analysis"],
+      "capacity": 3,
+      "current_load": 0,
+      "status": "available",
+      "responsible_steps": [1, 2],
+      "tools": ["reddit_api", "google_trends", "keyword_tool"],
+      "output": ["pain_point_report", "keyword_list", "title_suggestions"]
+    },
+    {
+      "id": "agent_product",
+      "name": "产品 Agent",
+      "role": "product_manager",
+      "description": "极简 PRD 设计、原型设计、尖叫度审核",
+      "skills": ["prd", "prototype", "ux_design", "scream_test"],
+      "capacity": 3,
+      "current_load": 0,
+      "status": "available",
+      "responsible_steps": [3, 8],
+      "tools": ["prototype_tool", "figma_api"],
+      "output": ["prd_document", "prototype", "scream_score"],
+      "standards": {
+        "understand_time": "3 秒",
+        "operation_steps": "1 步",
+        "scream_points": "至少 1 个"
+      }
+    },
+    {
+      "id": "agent_developer",
+      "name": "开发 Agent",
+      "role": "developer",
+      "description": "纯前端代码实现",
+      "skills": ["html", "css", "javascript", "frontend", "responsive"],
+      "capacity": 2,
+      "current_load": 0,
+      "status": "available",
+      "responsible_steps": [6],
+      "tools": ["code_editor", "browser_test"],
+      "output": ["index.html", "style.css", "script.js", "README.md"],
+      "constraints": {
+        "frontend_only": true,
+        "no_backend": true,
+        "max_size_kb": 100,
+        "must_run_directly": true,
+        "mobile_responsive": true
+      }
+    },
+    {
+      "id": "agent_qa",
+      "name": "调试 Agent",
+      "role": "qa",
+      "description": "逻辑检查、体验测试、报错修复",
+      "skills": ["testing", "debugging", "mobile_test", "performance"],
+      "capacity": 3,
+      "current_load": 0,
+      "status": "available",
+      "responsible_steps": [7],
+      "tools": ["browser_devtools", "mobile_emulator", "lighthouse"],
+      "output": ["test_report", "bug_list", "fix_suggestions", "quality_score"],
+      "standards": {
+        "logic_errors": 0,
+        "ui_fluency": "流畅",
+        "console_errors": 0,
+        "mobile_compatible": true
+      }
+    },
+    {
+      "id": "agent_executor",
+      "name": "执行 Agent",
+      "role": "executor",
+      "description": "部署上线、文件操作",
+      "skills": ["deploy", "git", "zip", "aliyun", "github"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "responsible_steps": [9],
+      "tools": ["git", "zip_cli", "aliyun_cli", "github_cli"],
+      "output": ["deployed_url", "github_repo", "zip_package"]
+    }
+  ],
+  
+  "workflow": {
+    "name": "9 步极简执行流程",
+    "total_steps": 9,
+    "current_step": 0,
+    "status": "waiting",
+    "steps": [
+      {
+        "step": 1,
+        "name": "Reddit 挖痛点",
+        "agent": "agent_researcher",
+        "criteria": ["高赞刚需", "垂直细分", "纯前端可做", "低维护"],
+        "output": "pain_point_report"
+      },
+      {
+        "step": 2,
+        "name": "SEO 关键词提取",
+        "agent": "agent_researcher",
+        "criteria": ["核心词", "长尾词", "标题描述"],
+        "output": "keyword_list"
+      },
+      {
+        "step": 3,
+        "name": "产品极简设计",
+        "agent": "agent_product",
+        "criteria": ["单核心功能", "原型", "内嵌 SEO"],
+        "output": "prd_document"
+      },
+      {
+        "step": 4,
+        "name": "可行性强制校验",
+        "agent": "commander_x",
+        "criteria": ["纯前端", "无自建后端", "免费 API", "1 天可上线"],
+        "output": "feasibility_report"
+      },
+      {
+        "step": 5,
+        "name": "指挥官分任务",
+        "agent": "commander_x",
+        "criteria": ["拆解任务", "明确 Agent 分工"],
+        "output": "task_assignments"
+      },
+      {
+        "step": 6,
+        "name": "开发 Agent 生成代码",
+        "agent": "agent_developer",
+        "criteria": ["轻量纯前端", "可直接运行"],
+        "output": "source_code"
+      },
+      {
+        "step": 7,
+        "name": "调试 Agent 质检",
+        "agent": "agent_qa",
+        "criteria": ["逻辑无误", "界面流畅", "无报错", "移动端适配"],
+        "output": "test_report"
+      },
+      {
+        "step": 8,
+        "name": "尖叫度终审",
+        "agent": "agent_product",
+        "criteria": ["3 秒懂", "一步操作", "有尖叫点"],
+        "output": "scream_score"
+      },
+      {
+        "step": 9,
+        "name": "部署上线",
+        "agent": "agent_executor",
+        "criteria": ["阿里云打包 ZIP", "本地", "GitHub", "发布"],
+        "output": "deployed_url"
+      }
+    ]
+  },
+  
+  "settings": {
+    "max_parallel_tasks": 3,
+    "check_interval_minutes": 10,
+    "auto_report": true,
+    "report_time": "22:00",
+    "silent_period": {
+      "start": "23:00",
+      "end": "08:00"
+    },
+    "step_timeout_hours": 4,
+    "auto_retry": true,
+    "max_retries": 2,
+    "quality_gate": {
+      "step_4_feasibility": ["frontend_only", "no_backend", "free_api", "one_day_launch"],
+      "step_8_scream": ["3s_understand", "1s_operation", "has_scream_point"]
+    }
+  },
+  
+  "communication": {
+    "protocol": "json",
+    "channels": {
+      "task_assignment": "tasks/assignments",
+      "status_update": "tasks/status",
+      "completion": "tasks/completion",
+      "errors": "tasks/errors",
+      "audit": "system/audit"
+    },
+    "message_format": {
+      "from": "agent_id",
+      "to": "agent_id",
+      "type": "message_type",
+      "step": "step_number",
+      "payload": {}
+    }
+  },
+  
+  "compliance": {
+    "zero_tolerance": true,
+    "violation_actions": {
+      "write_code": "immediate_stop_and_reassign",
+      "run_command": "immediate_stop_and_reassign",
+      "modify_file": "immediate_stop_and_reassign",
+      "execute_task": "immediate_stop_and_reassign"
+    },
+    "audit_log": true,
+    "heartbeat_check": true
+  }
+}

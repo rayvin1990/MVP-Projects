@@ -1,0 +1,50 @@
+﻿{
+    "updated":  "2026-03-11T09:35:00+08:00",
+    "description":  "Known malware blacklist",
+    "quarantineHistory":  [
+
+                          ],
+    "version":  "1.0.0",
+    "processNames":  [
+                         "mimikatz.exe",
+                         "psexec.exe",
+                         "cobaltstrike.exe",
+                         "metasploit.exe",
+                         "nc.exe",
+                         "netcat.exe",
+                         "pwdump.exe",
+                         "gsecdump.exe",
+                         "procdump.exe"
+                     ],
+    "suspiciousPorts":  [
+                            4444,
+                            5555,
+                            6666,
+                            31337,
+                            12345
+                        ],
+    "suspiciousPatterns":  [
+                               "*cryptolocker*",
+                               "*ransom*",
+                               "*miner*",
+                               "*keylogger*",
+                               "*stealer*",
+                               "*rat.exe",
+                               "*backdoor*"
+                           ],
+    "blockedDomains":  [
+                           "*.onion",
+                           "*.tk",
+                           "*.ml",
+                           "*.ga",
+                           "*.cf"
+                       ],
+    "hashes":  {
+                   "sha256":  [
+
+                              ],
+                   "md5":  [
+
+                           ]
+               }
+}

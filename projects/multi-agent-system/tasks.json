@@ -1,0 +1,346 @@
+{
+  "tasks": {
+    "task_0001": {
+      "id": "task_0001",
+      "title": "实现记忆搜索功能",
+      "description": "开发关键词搜索功能",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "in_progress",
+      "created_at": "2026-03-10T11:53:37.870712",
+      "due_at": "2026-03-12T11:53:37.870712",
+      "started_at": "2026-03-10T11:53:37.890804",
+      "completed_at": null,
+      "dependencies": [],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0002": {
+      "id": "task_0002",
+      "title": "编写测试用例",
+      "description": "为搜索功能编写单元测试",
+      "assigned_to": "agent_qa",
+      "priority": "p2",
+      "status": "pending",
+      "created_at": "2026-03-10T11:53:37.880265",
+      "due_at": "2026-03-12T23:53:37.880265",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0001"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0003": {
+      "id": "task_0003",
+      "title": "开发记忆系统搜索功能",
+      "description": "实现关键词搜索、日期范围搜索功能，使用 Python 开发",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-10T11:54:20.479073",
+      "due_at": "2026-03-12T11:54:20.479073",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0004": {
+      "id": "task_0004",
+      "title": "实现核心搜索算法",
+      "description": "开发关键词匹配和上下文提取功能",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-10T11:54:20.491290",
+      "due_at": "2026-03-12T23:54:20.491290",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0003"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0005": {
+      "id": "task_0005",
+      "title": "编写单元测试",
+      "description": "为搜索功能编写测试用例",
+      "assigned_to": "agent_qa",
+      "priority": "p2",
+      "status": "pending",
+      "created_at": "2026-03-10T11:54:20.503093",
+      "due_at": "2026-03-12T17:54:20.503093",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0003"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0006": {
+      "id": "task_0006",
+      "title": "开发安全扫描脚本",
+      "description": "开发木马病毒检测、恶意文件识别、可疑代码扫描脚本",
+      "assigned_to": "agent_dev",
+      "priority": "p0",
+      "status": "completed",
+      "created_at": "2026-03-11T08:25:00.000000",
+      "due_at": "2026-03-12T08:25:00.000000",
+      "started_at": "2026-03-11T08:27:00.000000",
+      "completed_at": "2026-03-11T08:40:00.000000",
+      "dependencies": [],
+      "progress": 100,
+      "result": "Created security-scan.ps1 with suspicious extension detection, sensitive data scanning, npm audit, and recent file monitoring. Report saved to memory/security-scan-2026-03-11.md",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0007": {
+      "id": "task_0007",
+      "title": "配置定期安全排查",
+      "description": "设置每周自动安全扫描 cron 任务，包含依赖审计、配置文件检查、恶意文件检测",
+      "assigned_to": "agent_sec",
+      "priority": "p0",
+      "status": "completed",
+      "created_at": "2026-03-11T08:25:00.000000",
+      "due_at": "2026-03-13T08:25:00.000000",
+      "started_at": "2026-03-11T08:43:00.000000",
+      "completed_at": "2026-03-11T08:44:00.000000",
+      "dependencies": [
+        "task_0006"
+      ],
+      "progress": 100,
+      "result": "Created security-cron.json with weekly schedule (Mon 09:00), scan paths configured, exclusions set (node_modules, .git, dist, build), report output to memory/security-report-YYYY-MM-DD.md, high-severity alerts enabled",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0008": {
+      "id": "task_0008",
+      "title": "建立安全响应机制",
+      "description": "制定安全事件响应流程：可疑文件隔离、风险警告、修复建议生成",
+      "assigned_to": "agent_sec",
+      "priority": "p1",
+      "status": "completed",
+      "created_at": "2026-03-11T08:25:00.000000",
+      "due_at": "2026-03-14T08:25:00.000000",
+      "started_at": "2026-03-11T08:45:00.000000",
+      "completed_at": "2026-03-11T08:48:00.000000",
+      "dependencies": [
+        "task_0006"
+      ],
+      "progress": 100,
+      "result": "Created quarantine.ps1 (file isolation with logging), warning-templates.ps1 (HIGH/MEDIUM/LOW risk alert templates), remediation-generator.ps1 (auto-generate remediation plans by issue type), SEC-RESPONSE.md (5-stage response procedure: Discovery→Quarantine→Alert→Remediation→Verification). Quarantine directory created at projects/multi-agent-system/quarantine/",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0009": {
+      "id": "task_0009",
+      "title": "开发本地环境安全监控系统",
+      "description": "开发完整的本地环境安全监控 Agent，包含实时文件监控、进程行为分析、网络流量检测、定期全盘扫描",
+      "assigned_to": "agent_dev",
+      "priority": "p0",
+      "status": "completed",
+      "created_at": "2026-03-11T08:59:00.000000",
+      "due_at": "2026-03-13T08:59:00.000000",
+      "started_at": "2026-03-11T08:59:00.000000",
+      "completed_at": "2026-03-11T09:27:00.000000",
+      "dependencies": [],
+      "progress": 100,
+      "result": "Created 6 PowerShell modules: env-monitor.ps1 (main), file-watcher.ps1 (real-time file monitoring with hash comparison), process-analyzer.ps1 (process behavior analysis), network-monitor.ps1 (network traffic detection), system-checker.ps1 (registry/tasks/services check), env-monitor-config.json (configuration). Demo: Scanned Downloads/Desktop/Documents, detected 20 high-resource processes and 12 suspicious processes. Logs saved to projects/multi-agent-system/logs/",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0010": {
+      "id": "task_0010",
+      "title": "集成 Windows Defender 杀毒能力",
+      "description": "调用 Windows Defender API 进行病毒扫描，集成系统级杀毒功能",
+      "assigned_to": "agent_dev",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-11T08:59:00.000000",
+      "due_at": "2026-03-14T08:59:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0009"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0011": {
+      "id": "task_0011",
+      "title": "测试环境安全监控系统",
+      "description": "对环境安全监控系统进行全面测试，包括文件监控、进程监控、网络检测功能验证",
+      "assigned_to": "agent_qa",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-11T08:59:00.000000",
+      "due_at": "2026-03-15T08:59:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0010"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0012": {
+      "id": "task_0012",
+      "title": "ContextCapsule - 产品需求文档",
+      "description": "编写上下文胶囊产品 PRD：用户痛点分析、功能定义、技术方案、页面原型",
+      "assigned_to": "agent_doc",
+      "priority": "p0",
+      "status": "completed",
+      "created_at": "2026-03-11T09:04:00.000000",
+      "due_at": "2026-03-12T09:04:00.000000",
+      "started_at": "2026-03-11T09:04:00.000000",
+      "completed_at": "2026-03-11T09:06:00.000000",
+      "dependencies": [],
+      "progress": 100,
+      "result": "PRD.md created at projects/ContextCapsule/PRD.md",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0013": {
+      "id": "task_0013",
+      "title": "ContextCapsule - 市场调研",
+      "description": "调研现有上下文管理工具、竞品分析、差异化定位",
+      "assigned_to": "agent_doc",
+      "priority": "p0",
+      "status": "completed",
+      "created_at": "2026-03-11T09:04:00.000000",
+      "due_at": "2026-03-12T09:04:00.000000",
+      "started_at": "2026-03-11T09:04:00.000000",
+      "completed_at": "2026-03-11T09:06:00.000000",
+      "dependencies": [],
+      "progress": 100,
+      "result": "Market research completed - PRD includes pain points and competitive analysis",
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0014": {
+      "id": "task_0014",
+      "title": "ContextCapsule - 开发实现",
+      "description": "根据 PRD 开发上下文胶囊：浏览器扩展 + 桌面工具 + 上下文导出/导入功能",
+      "assigned_to": "agent_dev",
+      "priority": "p0",
+      "status": "pending",
+      "created_at": "2026-03-11T09:04:00.000000",
+      "due_at": "2026-03-14T09:04:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0012"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0015": {
+      "id": "task_0015",
+      "title": "未知进程/文件实时监控",
+      "description": "对未知进程和文件进行 7x24 小时实时监控，发现危险行为立即采取紧急措施（隔离/终止/警告）",
+      "assigned_to": "agent_sec",
+      "priority": "p0",
+      "status": "in_progress",
+      "created_at": "2026-03-11T09:32:00.000000",
+      "due_at": "2026-03-12T09:32:00.000000",
+      "started_at": "2026-03-11T09:32:00.000000",
+      "completed_at": null,
+      "dependencies": [
+        "task_0009"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0016": {
+      "id": "task_0016",
+      "title": "自动响应机制开发",
+      "description": "开发自动化紧急响应脚本：进程终止、文件隔离、网络阻断、主任告警",
+      "assigned_to": "agent_sec",
+      "priority": "p0",
+      "status": "pending",
+      "created_at": "2026-03-11T09:32:00.000000",
+      "due_at": "2026-03-13T09:32:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0015"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    },
+    "task_0017": {
+      "id": "task_0017",
+      "title": "建立安全白名单/黑名单",
+      "description": "建立已知安全进程白名单和恶意软件黑名单，提高检测准确率",
+      "assigned_to": "agent_sec",
+      "priority": "p1",
+      "status": "pending",
+      "created_at": "2026-03-11T09:32:00.000000",
+      "due_at": "2026-03-14T09:32:00.000000",
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "task_0015"
+      ],
+      "progress": 0,
+      "result": null,
+      "error": null,
+      "retry_count": 0
+    }
+  },
+  "queue": {
+    "pending": [
+      "task_0002",
+      "task_0003",
+      "task_0004",
+      "task_0005",
+      "task_0010",
+      "task_0011",
+      "task_0014",
+      "task_0015",
+      "task_0016",
+      "task_0017"
+    ],
+    "in_progress": [
+      "task_0001"
+    ],
+    "completed": [
+      "task_0006",
+      "task_0007",
+      "task_0008",
+      "task_0009",
+      "task_0012",
+      "task_0013"
+    ],
+    "failed": []
+  },
+  "stats": {
+    "total": 17,
+    "completed": 6,
+    "failed": 0
+  }
+}

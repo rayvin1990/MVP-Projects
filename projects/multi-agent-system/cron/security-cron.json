@@ -1,0 +1,54 @@
+{
+  "name": "定期安全排查",
+  "description": "每周自动安全扫描任务",
+  "schedule": {
+    "cron": "0 9 * * 1",
+    "timezone": "Asia/Shanghai",
+    "description": "每周一 09:00 执行"
+  },
+  "task": {
+    "type": "security_scan",
+    "script": "security-scan.ps1",
+    "working_directory": "C:\\Users\\57684\\.openclaw\\workspace\\projects\\multi-agent-system"
+  },
+  "scan": {
+    "paths": [
+      "C:\\Users\\57684\\.openclaw\\workspace\\",
+      "C:\\Users\\57684\\projects\\"
+    ],
+    "exclude": [
+      "node_modules/",
+      ".git/",
+      "dist/",
+      "build/"
+    ],
+    "checks": [
+      "suspicious_extensions",
+      "sensitive_data",
+      "npm_audit",
+      "recent_files",
+      "config_security"
+    ]
+  },
+  "output": {
+    "report_path": "C:\\Users\\57684\\.openclaw\\workspace\\memory\\security-report-{{YYYY-MM-DD}}.md",
+    "format": "markdown"
+  },
+  "alerts": {
+    "high_severity": {
+      "notify_main_session": true,
+      "immediate": true,
+      "channels": ["webchat"]
+    },
+    "medium_severity": {
+      "notify_main_session": false,
+      "include_in_report": true
+    },
+    "low_severity": {
+      "include_in_report": true
+    }
+  },
+  "enabled": true,
+  "created_at": "2026-03-11T08:44:00+08:00",
+  "created_by": "agent_sec"
+}

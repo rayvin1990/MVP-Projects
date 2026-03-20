@@ -1,0 +1,179 @@
+{
+  "system": {
+    "name": "多 Agent 协作系统",
+    "version": "1.0",
+    "workspace": "C:\\Users\\57684\\.openclaw\\workspace"
+  },
+  
+  "coordinator": {
+    "id": "coordinator",
+    "name": "主 Agent",
+    "role": "coordinator",
+    "description": "项目经理 - 负责任务接收、分解、分配、监督、汇总",
+    "capabilities": [
+      "task_planning",
+      "resource_allocation",
+      "progress_tracking",
+      "quality_control",
+      "conflict_resolution"
+    ]
+  },
+  
+  "agents": [
+    {
+      "id": "agent_codex",
+      "name": "Codex 团队负责人",
+      "role": "codex_lead",
+      "description": "负责小程序/前端开发、代码实现、技术架构",
+      "skills": ["javascript", "typescript", "wechat_miniprogram", "react", "taro", "frontend"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "working_hours": {
+        "start": "09:00",
+        "end": "22:00"
+      },
+      "specialties": [
+        "微信小程序开发",
+        "Taro 跨端框架",
+        "前端架构",
+        "React 开发",
+        "组件封装"
+      ]
+    },
+    {
+      "id": "agent_claude_code",
+      "name": "Claude Code 团队负责人",
+      "role": "claude_code_lead",
+      "description": "负责测试、部署、工程保障",
+      "skills": ["testing", "deployment", "devops", "jest", "CI_CD"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "working_hours": {
+        "start": "09:00",
+        "end": "22:00"
+      },
+      "specialties": [
+        "单元测试",
+        "集成测试",
+        "Jest 测试框架",
+        "Vercel 部署",
+        "真机调试"
+      ]
+    },
+    {
+      "id": "agent_dev",
+      "name": "开发专家",
+      "role": "developer",
+      "description": "负责代码编写、功能实现、Bug 修复",
+      "skills": ["python", "javascript", "api", "database", "architecture"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "working_hours": {
+        "start": "09:00",
+        "end": "22:00"
+      },
+      "specialties": [
+        "OpenClaw 技能开发",
+        "Python 脚本",
+        "API 集成",
+        "系统设计"
+      ]
+    },
+    {
+      "id": "agent_qa",
+      "name": "测试专家",
+      "role": "qa",
+      "description": "负责测试用例编写、执行测试、质量验证",
+      "skills": ["testing", "pytest", "automation", "bug_report"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "working_hours": {
+        "start": "09:00",
+        "end": "22:00"
+      },
+      "specialties": [
+        "单元测试",
+        "集成测试",
+        "性能测试",
+        "自动化测试"
+      ]
+    },
+    {
+      "id": "agent_doc",
+      "name": "文档专家",
+      "role": "writer",
+      "description": "负责文档编写、整理记录、生成报告",
+      "skills": ["writing", "documentation", "markdown", "reporting"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "working_hours": {
+        "start": "09:00",
+        "end": "22:00"
+      },
+      "specialties": [
+        "技术文档",
+        "API 文档",
+        "用户手册",
+        "项目报告"
+      ]
+    },
+    {
+      "id": "agent_sec",
+      "name": "安全专家",
+      "role": "security",
+      "description": "负责安全扫描、漏洞排查、木马防护、依赖审计",
+      "skills": ["security_audit", "malware_detection", "vulnerability_scan", "dependency_audit", "static_analysis"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "working_hours": {
+        "start": "00:00",
+        "end": "23:59"
+      },
+      "specialties": [
+        "木马病毒检测",
+        "代码安全扫描",
+        "依赖漏洞审计",
+        "配置文件检查",
+        "恶意文件识别",
+        "定期安全排查"
+      ]
+    }
+  ],
+  
+  "task_queue": {
+    "pending": [],
+    "in_progress": [],
+    "completed": [],
+    "failed": []
+  },
+  
+  "settings": {
+    "max_parallel_tasks": 5,
+    "check_interval_minutes": 10,
+    "auto_report": true,
+    "report_time": "22:00",
+    "silent_period": {
+      "start": "23:00",
+      "end": "08:00"
+    },
+    "task_timeout_hours": 24,
+    "auto_retry": true,
+    "max_retries": 3
+  },
+  
+  "communication": {
+    "protocol": "json",
+    "channels": {
+      "task_assignment": "tasks/assignments",
+      "status_update": "tasks/status",
+      "completion": "tasks/completion",
+      "errors": "tasks/errors"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "context-snapshot",
+  "displayName": "Context Snapshot",
+  "description": "捕获和恢复开发者上下文",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "context.capture",
+        "title": "捕获上下文",
+        "category": "Context Snapshot"
+      },
+      {
+        "command": "context.restore",
+        "title": "恢复上下文",
+        "category": "Context Snapshot"
+      },
+      {
+        "command": "context.list",
+        "title": "查看上下文列表",
+        "category": "Context Snapshot"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "context.capture",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c"
+      },
+      {
+        "command": "context.restore",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/node": "~20.11.24",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.3"
+  }
+}

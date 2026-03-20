@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-03-11T09:35:00+08:00",
+  "projects": {
+    "security-monitor": {
+      "name": "实时安全监控系统",
+      "description": "对未知进程和文件进行实时监控，发现危险立即采取紧急措施",
+      "tasks": {
+        "task_0015": {
+          "id": "task_0015",
+          "priority": "P0",
+          "name": "未知进程/文件实时监控",
+          "description": "7x24 小时实时监控新进程启动、新文件创建、可疑行为检测",
+          "status": "completed",
+          "completedAt": "2026-03-11T09:45:00+08:00",
+          "deliverable": "realtime-monitor.ps1",
+          "features": [
+            "进程启动监控",
+            "文件创建监控（Downloads/Desktop/Documents）",
+            "勒索软件检测（大量文件加密）",
+            "敏感文件访问检测",
+            "异常网络连接检测",
+            "注册表启动项监控"
+          ]
+        },
+        "task_0016": {
+          "id": "task_0016",
+          "priority": "P0",
+          "name": "自动响应机制",
+          "description": "自动化紧急响应 - 进程终止、文件隔离、网络阻断、主任告警",
+          "status": "completed",
+          "completedAt": "2026-03-11T09:45:00+08:00",
+          "deliverable": "auto-respond.ps1",
+          "features": [
+            "强制进程终止",
+            "文件隔离到 quarantine/目录",
+            "防火墙规则阻断恶意连接",
+            "弹窗 + 声音 + 文件告警"
+          ]
+        },
+        "task_0017": {
+          "id": "task_0017",
+          "priority": "P1",
+          "name": "白名单/黑名单",
+          "description": "提高检测准确率 - 白名单、黑名单、自动学习",
+          "status": "completed",
+          "completedAt": "2026-03-11T09:45:00+08:00",
+          "deliverable": "whitelist.json, blacklist.json",
+          "features": [
+            "已知安全进程白名单（chrome, node, vscode, wechat 等）",
+            "已知恶意软件黑名单（哈希 + 进程名）",
+            "自动学习机制（用户确认过的进程自动加入白名单）"
+          ]
+        }
+      },
+      "additionalDeliverables": {
+        "install-script": {
+          "file": "install-security-monitor.ps1",
+          "description": "安装脚本，注册为系统服务/启动项"
+        },
+        "uninstall-script": {
+          "file": "uninstall-security-monitor.ps1",
+          "description": "卸载脚本（安装时自动生成）"
+        }
+      }
+    }
+  }
+}

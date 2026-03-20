@@ -1,0 +1,433 @@
+{
+  "system": {
+    "name": "OpenClaw Multi-Agent System",
+    "version": "3.0",
+    "workspace": "C:\\Users\\Administrator\\.openclaw\\workspace",
+    "principle": "纯管理，不执行 - 基于 OpenClaw 架构文档设计",
+    "architecture": "Commander-X + 4 个子 Agent"
+  },
+  
+  "commander_x": {
+    "id": "commander_x",
+    "name": "指挥官-X",
+    "role": "commander",
+    "description": "纯粹的管理者和战略规划者，不具备直接执行能力",
+    "forbidden_actions": [
+      "write_code",
+      "run_command", 
+      "modify_file",
+      "execute_task",
+      "generate_content",
+      "access_filesystem",
+      "network_request"
+    ],
+    "allowed_actions": [
+      "delegate_task",
+      "accept_result",
+      "reject_result",
+      "next_step",
+      "audit_compliance",
+      "terminate_process",
+      "adjust_permission"
+    ],
+    "self_check": {
+      "enabled": true,
+      "interval_minutes": 10,
+      "questions": [
+        "我是在指派工作，还是我自己在干活？",
+        "任务是否分配给了正确的 Agent？",
+        "是否违反了绝对禁令？"
+      ]
+    },
+    "control_power": {
+      "force_terminate": true,
+      "result_verification": true,
+      "permission_management": true
+    }
+  },
+  
+  "subagents": [
+    {
+      "id": "researcher",
+      "name": "Researcher (研究员)",
+      "role": "researcher",
+      "description": "信息搜集、整理和分析，兼任需求&SEO 职责",
+      "powers": [
+        "联网搜索",
+        "查阅 API 文档",
+        "分析日志文件",
+        "总结技术资料",
+        "提供决策依据",
+        "痛点挖掘",
+        "SEO 关键词提取"
+      ],
+      "data_sources": {
+        "international": ["Reddit", "Twitter", "Product Hunt", "Hacker News"],
+        "domestic": ["知乎", "小红书", "微博", "豆瓣小组", "贴吧", "抖音"],
+        "seo_tools": ["Google Trends", "百度指数", "微信指数", "5118"],
+        "api_services": ["Bvare AI Search"]
+      },
+      "api_config": {
+        "bvare": {
+          "enabled": true,
+          "api_key_env": "BVARE_API_KEY",
+          "use_cases": ["reddit_mining", "trend_analysis", "competitor_research", "global_search"],
+          "rate_limit": "根据套餐而定"
+        }
+      },
+      "constraints": [
+        "不能修改现有代码库",
+        "网络访问受代理或防火墙限制",
+        "禁止访问非法或高风险网站",
+        "遵守 API 调用速率限制",
+        "根据实际网络环境选择可用数据源"
+      ],
+      "skills": ["web_search", "api_docs", "log_analysis", "technical_research", "summarization", "pain_point_mining", "seo"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "sandbox": true,
+      "permissions": {
+        "code_write": false,
+        "file_access": "read_only",
+        "command_exec": false,
+        "network": true
+      },
+      "responsible_steps": [1, 2],
+      "fallback_strategy": {
+        "if_reddit_blocked": "使用知乎/小红书替代",
+        "if_google_blocked": "使用百度指数/微信指数替代",
+        "if_all_blocked": "请求用户提供数据源或模拟数据"
+      }
+    },
+    {
+      "id": "product",
+      "name": "Product (产品专家)",
+      "role": "product_manager",
+      "description": "极简 PRD 设计、原型设计、尖叫度审核",
+      "powers": [
+        "设计 PRD",
+        "设计原型",
+        "审核尖叫度",
+        "用户体验优化",
+        "极简设计"
+      ],
+      "constraints": [
+        "不能编写代码",
+        "不能修改业务逻辑",
+        "专注于用户体验",
+        "坚持 3 秒懂、一步操作标准"
+      ],
+      "skills": ["prd", "prototype", "ux_design", "scream_test", "minimalist_design"],
+      "capacity": 3,
+      "current_load": 0,
+      "status": "available",
+      "sandbox": true,
+      "permissions": {
+        "code_write": false,
+        "file_access": "read_only",
+        "command_exec": false,
+        "network": false
+      },
+      "responsible_steps": [3, 8],
+      "standards": {
+        "understand_time": "3 秒",
+        "operation_steps": "1 步",
+        "scream_points": "至少 1 个"
+      }
+    },
+    {
+      "id": "engineer",
+      "name": "Engineer (工程师)",
+      "role": "engineer",
+      "description": "代码生成、重构和优化",
+      "powers": [
+        "编写代码",
+        "重构代码",
+        "优化代码逻辑",
+        "解释代码原理"
+      ],
+      "constraints": [
+        "不能直接操作文件系统",
+        "不能运行终端命令",
+        "不能修改宿主系统核心文件",
+        "生成代码必须在隔离沙箱环境中执行"
+      ],
+      "skills": ["python", "javascript", "html", "css", "code_review", "refactoring"],
+      "capacity": 3,
+      "current_load": 0,
+      "status": "available",
+      "sandbox": true,
+      "permissions": {
+        "code_write": true,
+        "file_access": false,
+        "command_exec": false,
+        "network": false
+      },
+      "responsible_steps": [6],
+      "constraints_detail": {
+        "frontend_only": true,
+        "no_backend": true,
+        "max_size_kb": 100,
+        "must_run_directly": true,
+        "mobile_responsive": true
+      }
+    },
+    {
+      "id": "tester",
+      "name": "Tester (测试员)",
+      "role": "qa",
+      "description": "验证代码正确性和稳定性",
+      "powers": [
+        "编写单元测试",
+        "编写集成测试用例",
+        "执行测试流程",
+        "分析测试覆盖率",
+        "查找潜在 Bug"
+      ],
+      "constraints": [
+        "不能修改业务逻辑代码",
+        "不能访问或修改用户隐私数据",
+        "测试必须在隔离环境中进行"
+      ],
+      "skills": ["pytest", "unittest", "integration_test", "coverage_analysis", "bug_hunting", "mobile_test"],
+      "capacity": 3,
+      "current_load": 0,
+      "status": "available",
+      "sandbox": true,
+      "permissions": {
+        "code_write": true,
+        "code_modify": false,
+        "file_access": false,
+        "command_exec": false,
+        "network": false
+      },
+      "responsible_steps": [7],
+      "standards": {
+        "logic_errors": 0,
+        "ui_fluency": "流畅",
+        "console_errors": 0,
+        "mobile_compatible": true
+      }
+    },
+    {
+      "id": "executor",
+      "name": "Executor (执行者)",
+      "role": "executor",
+      "description": "在操作系统层面执行具体指令，负责部署上线",
+      "powers": [
+        "在终端运行 Shell 命令",
+        "操作文件系统（读写、移动、删除）",
+        "管理进程",
+        "配置环境",
+        "打包 ZIP",
+        "Git 操作",
+        "GitHub 发布"
+      ],
+      "constraints": [
+        "不能编写复杂业务逻辑代码",
+        "必须遵守最小权限原则",
+        "禁止执行危险命令（如 rm -rf 等）",
+        "必须在沙箱环境中执行"
+      ],
+      "skills": ["shell", "file_operations", "process_management", "environment_config", "deploy", "git", "github"],
+      "capacity": 5,
+      "current_load": 0,
+      "status": "available",
+      "sandbox": true,
+      "permissions": {
+        "code_write": false,
+        "file_access": true,
+        "command_exec": true,
+        "network": false
+      },
+      "dangerous_commands_blocked": [
+        "rm -rf",
+        "rm -rf /",
+        "dd if=/dev/zero",
+        "mkfs",
+        "chmod 777",
+        "sudo rm",
+        ":(){ :|:& };:"
+      ],
+      "responsible_steps": [9]
+    }
+  ],
+  
+  "workflow": {
+    "name": "9 步极简执行流程（整合版）",
+    "total_steps": 9,
+    "current_step": 0,
+    "status": "waiting",
+    "steps": [
+      {
+        "step": 1,
+        "name": "Reddit 挖痛点",
+        "agent": "researcher",
+        "criteria": ["高赞刚需", "垂直细分", "纯前端可做", "低维护"],
+        "output": "pain_point_report"
+      },
+      {
+        "step": 2,
+        "name": "SEO 关键词提取",
+        "agent": "researcher",
+        "criteria": ["核心词", "长尾词", "标题描述"],
+        "output": "keyword_list"
+      },
+      {
+        "step": 3,
+        "name": "产品极简设计",
+        "agent": "product",
+        "criteria": ["单核心功能", "原型", "内嵌 SEO"],
+        "output": "prd_document"
+      },
+      {
+        "step": 4,
+        "name": "可行性强制校验",
+        "agent": "commander_x",
+        "criteria": ["纯前端", "无自建后端", "免费 API", "1 天可上线"],
+        "output": "feasibility_report"
+      },
+      {
+        "step": 5,
+        "name": "指挥官分任务",
+        "agent": "commander_x",
+        "criteria": ["拆解任务", "明确 Agent 分工"],
+        "output": "task_assignments"
+      },
+      {
+        "step": 6,
+        "name": "Engineer 生成代码",
+        "agent": "engineer",
+        "criteria": ["轻量纯前端", "可直接运行"],
+        "output": "source_code"
+      },
+      {
+        "step": 7,
+        "name": "Tester 质检",
+        "agent": "tester",
+        "criteria": ["逻辑无误", "界面流畅", "无报错", "移动端适配"],
+        "output": "test_report"
+      },
+      {
+        "step": 8,
+        "name": "尖叫度终审",
+        "agent": "product",
+        "criteria": ["3 秒懂", "一步操作", "有尖叫点"],
+        "output": "scream_score",
+        "co_auditor": "commander_x"
+      },
+      {
+        "step": 9,
+        "name": "部署上线",
+        "agent": "executor",
+        "criteria": ["阿里云打包 ZIP", "本地", "GitHub", "发布"],
+        "output": "deployed_url"
+      }
+    ]
+  },
+  
+  "security": {
+    "sandbox_principle": true,
+    "minimum_permission": true,
+    "code_review_required": true,
+    "resource_limit": {
+      "timeout_seconds": 300,
+      "max_memory_mb": 512,
+      "max_cpu_percent": 50
+    },
+    "io_format_locked": true,
+    "prompt_injection_protection": true,
+    "history_cleanup": true,
+    "dangerous_command_filter": true
+  },
+  
+  "heartbeat": {
+    "enabled": true,
+    "pulse": {
+      "frequency_interactions": 5,
+      "timeout_seconds": 10,
+      "format": "simple_status_code"
+    },
+    "deadlock_detection": {
+      "enabled": true,
+      "max_duplicate_responses": 3,
+      "max_same_assignment": 3,
+      "max_reasoning_tokens": 500,
+      "actions": {
+        "force_interrupt": true,
+        "restart_thinking": true,
+        "summarize_blocker": true
+      }
+    },
+    "self_check": {
+      "enabled": true,
+      "interval_interactions": 5,
+      "check_items": [
+        "confidence_level",
+        "task_progress",
+        "agent_status",
+        "error_count"
+      ]
+    },
+    "resource_monitor": {
+      "token_limit_warning_percent": 80,
+      "memory_compression_enabled": true,
+      "tool_call_frequency_limit": 5,
+      "tool_call_window_seconds": 60,
+      "actions": {
+        "compress_memory": true,
+        "pause_and_reflect": true
+      }
+    }
+  },
+  
+  "settings": {
+    "max_parallel_tasks": 3,
+    "check_interval_minutes": 10,
+    "auto_report": true,
+    "report_time": "22:00",
+    "silent_period": {
+      "start": "23:00",
+      "end": "08:00"
+    },
+    "step_timeout_hours": 4,
+    "auto_retry": true,
+    "max_retries": 2,
+    "quality_gate": {
+      "step_4_feasibility": ["frontend_only", "no_backend", "free_api", "one_day_launch"],
+      "step_8_scream": ["3s_understand", "1s_operation", "has_scream_point"]
+    }
+  },
+  
+  "communication": {
+    "protocol": "json",
+    "format": {
+      "from": "agent_id",
+      "to": "agent_id",
+      "type": "message_type",
+      "step": "step_number",
+      "payload": {}
+    },
+    "channels": {
+      "task_assignment": "tasks/assignments",
+      "status_update": "tasks/status",
+      "completion": "tasks/completion",
+      "errors": "tasks/errors",
+      "audit": "system/audit"
+    }
+  },
+  
+  "compliance": {
+    "zero_tolerance": true,
+    "violation_actions": {
+      "write_code": "immediate_stop_and_reassign",
+      "run_command": "immediate_stop_and_reassign",
+      "modify_file": "immediate_stop_and_reassign",
+      "execute_task": "immediate_stop_and_reassign"
+    },
+    "audit_log": true,
+    "heartbeat_check": true,
+    "permission_review": true
+  }
+}

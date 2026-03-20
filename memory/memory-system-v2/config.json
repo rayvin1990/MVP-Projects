@@ -1,0 +1,93 @@
+{
+  "version": "2.2",
+  "updated": "2026-03-12",
+  "workspace": "../../",
+  "memoryDir": "memory",
+  "longTermMemory": "MEMORY.md",
+  "tasksFile": "memory/tasks.json",
+  "memoryLevels": {
+    "longTerm": {
+      "name": "????",
+      "file": "MEMORY.md",
+      "retention": "permanent",
+      "description": "?????????????????"
+    },
+    "mediumTerm": {
+      "name": "????",
+      "file": "memory/YYYY-MM-DD.md",
+      "retention": "30 days",
+      "description": "??????????????"
+    },
+    "shortTerm": {
+      "name": "????",
+      "file": "memory/daily/",
+      "retention": "7 days",
+      "description": "?????????????"
+    }
+  },
+  "autoCleanup": {
+    "enabled": true,
+    "schedule": "weekly",
+    "dayOfWeek": "Sunday",
+    "actions": [
+      {
+        "name": "??????",
+        "source": "memory/daily/",
+        "olderThan": 7,
+        "action": "delete"
+      },
+      {
+        "name": "??????",
+        "source": "memory/YYYY-MM-DD.md",
+        "olderThan": 30,
+        "action": "summarize_to_longterm_then_archive"
+      },
+      {
+        "name": "??????",
+        "source": "memory/YYYY-MM-DD.md",
+        "olderThan": 60,
+        "action": "move_to_archive"
+      }
+    ]
+  },
+  "importanceRules": {
+    "longTerm": [
+      "????",
+      "?????",
+      "??????",
+      "??????",
+      "??????",
+      "????",
+      "????"
+    ],
+    "mediumTerm": [
+      "????",
+      "????",
+      "????",
+      "?????",
+      "????"
+    ],
+    "shortTerm": [
+      "????",
+      "????",
+      "?????",
+      "????"
+    ]
+  },
+  "cleanupSchedule": {
+    "daily": {
+      "time": "23:00",
+      "action": "create_daily_summary"
+    },
+    "weekly": {
+      "day": "Sunday",
+      "time": "22:00",
+      "action": "auto_summarize_and_cleanup"
+    },
+    "monthly": {
+      "day": 1,
+      "time": "10:00",
+      "action": "archive_old_memories"
+    }
+  }
+}

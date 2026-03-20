@@ -1,0 +1,112 @@
+{
+    "paths": {
+        "trusted": [
+            "C:\\Program Files\\",
+            "C:\\Program Files (x86)\\",
+            "C:\\Windows\\System32\\",
+            "C:\\Windows\\SysWOW64\\",
+            "C:\\Users\\57684\\AppData\\Local\\Programs\\",
+            "C:\\Users\\57684\\.openclaw\\",
+            "C:\\Users\\57684\\.openclaw\\workspace\\",
+            "C:\\Users\\57684\\.openclaw\\workspace\\projects\\",
+            "C:\\Users\\57684\\.openclaw\\workspace\\quarantine\\",
+            "C:\\Users\\57684\\.openclaw\\workspace\\projects\\multi-agent-system\\quarantine\\",
+            "C:\\Users\\57684\\.openclaw\\workspace\\projects\\ContextCapsule\\",
+            "C:\\Users\\57684\\projects\\",
+            "C:\\Users\\57684\\source\\",
+            "C:\\Users\\57684\\dev\\",
+            "C:\\Users\\57684\\code\\",
+            "C:\\Users\\57684\\.claude\\",
+            "C:\\Users\\57684\\AppData\\Roaming\\npm\\node_modules\\@anthropic\\",
+            "C:\\Users\\57684\\AppData\\Roaming\\npm\\node_modules\\acpx\\",
+            "C:\\Users\\57684\\AppData\\Local\\Programs\\Claude\\"
+        ]
+    },
+    "version": "1.2.0",
+    "updated": "2026-03-11T10:03:00+08:00",
+    "description": "Known safe processes whitelist - Development tools complete whitelist with Claude Code",
+    "autoLearn": {
+        "userConfirmed": [],
+        "pendingConfirmation": [],
+        "enabled": true
+    },
+    "processes": {
+        "communication": [
+            "WeChat.exe",
+            "Weixin.exe",
+            "DingTalk.exe",
+            "teams.exe",
+            "slack.exe"
+        ],
+        "security": [
+            "MsMpEng.exe",
+            "SecurityHealthService.exe",
+            "SecurityHealthSystray.exe"
+        ],
+        "openclaw": [
+            "node.exe",
+            "node32.exe",
+            "openclaw.exe",
+            "gateway.exe"
+        ],
+        "utilities": [
+            "notepad.exe",
+            "calc.exe",
+            "snippingtool.exe",
+            "ScreenSketch.exe",
+            "YourPhone.exe",
+            "SearchApp.exe"
+        ],
+        "system": [
+            "explorer.exe",
+            "taskmgr.exe",
+            "svchost.exe",
+            "lsass.exe",
+            "csrss.exe",
+            "wininit.exe",
+            "services.exe",
+            "spoolsv.exe",
+            "dwm.exe",
+            "searchindexer.exe",
+            "RuntimeBroker.exe",
+            "StartMenuExperienceHost.exe",
+            "ShellExperienceHost.exe"
+        ],
+        "browsers": [
+            "chrome.exe",
+            "msedge.exe",
+            "firefox.exe",
+            "brave.exe"
+        ],
+        "development": [
+            "node.exe",
+            "node32.exe",
+            "python.exe",
+            "pythonw.exe",
+            "py.exe",
+            "git.exe",
+            "git-bash.exe",
+            "git-credential-manager.exe",
+            "code.exe",
+            "code-insiders.exe",
+            "notepad++.exe",
+            "sublime_text.exe",
+            "npm.exe",
+            "npx.exe",
+            "yarn.exe",
+            "pnpm.exe",
+            "webpack.exe",
+            "vite.exe",
+            "powershell.exe",
+            "pwsh.exe",
+            "cmd.exe",
+            "wt.exe",
+            "bash.exe",
+            "npm.cmd",
+            "npx.cmd",
+            "Code.exe",
+            "claude.exe",
+            "acpx.exe"
+        ]
+    }
+}
