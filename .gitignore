@@ -18,11 +18,27 @@ quarantine/
 .env.local
 .env.local.temp
 openclaw.json
+credentials/
 **/config.*
 **/auth-profiles.json
 **/models.json
 **/gateway.token
 **/*.token
+*.pem
+*.key
+id_rsa*
+ssh/*
+
+# ====================
+# API 密钥和密码文件
+# ====================
+**/secrets.json
+**/keys.json
+**/passwords.json
+**/.apikey
+**/api-keys*
+**/*secret*
+**/*credential*
 
 # ====================
 # 嵌入式 git 仓库
