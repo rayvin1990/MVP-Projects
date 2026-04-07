@@ -18,6 +18,7 @@ quarantine/
 .env.local
 .env.local.temp
 openclaw.json
+TOOLS.md
 credentials/
 **/config.*
 **/auth-profiles.json
