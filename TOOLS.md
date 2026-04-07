@@ -43,13 +43,14 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ## Gemini CLI
 
-- **API Key**: `AIzaSyDQHDJllKl8bVTgIDq7kxuP8YmqZJJ35Ds`
+- **API Key**: `REDACTED`
 - **用途**: Gemini CLI (gemini) 调用
 - **代理**: HTTP_PROXY/HTTPS_PROXY 已配置到 Gateway
 
 ## 配额追踪
 
 ### Web Search (Brave)
+- **API Key**: `REDACTED`
 - **月额度：** 1000 次
 - **重置日期：** 每月 1 号
 - **当前状态：** 15/1000 次（2026-03-06）
