@@ -1,8 +1,11 @@
 {
-  "lastVerifiedDate": "2026-03-02",
+  "lastVerifiedDate": "2026-04-03",
   "lastChecks": {
+    "marketScan": 1743472800,
+    "securityScan": 1743309960,
     "email": null,
     "calendar": null,
     "weather": null
-  }
+  },
+  "lastHeartbeat": 1743668026000
 }

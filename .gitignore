@@ -1,4 +1,32 @@
-# 排除嵌入式 git 仓库
+# ====================
+# 沙箱区（不备份）
+# ====================
+sandbox/
+tmp/
+tests/
+experiments/
+*.log
+*.tmp
+.cache/
+quarantine/
+
+# ====================
+# 敏感配置（不备份）
+# ====================
+.env*
+*.env
+.env.local
+.env.local.temp
+openclaw.json
+**/config.*
+**/auth-profiles.json
+**/models.json
+**/gateway.token
+**/*.token
+
+# ====================
+# 嵌入式 git 仓库
+# ====================
 context-compression-mvp/
 projects/ContextCapsule/
 projects/MVP-Projects/
@@ -11,10 +39,10 @@ projects/context-capsule/
 projects/ai-council/
 projects/company/
 
-# 排除 node_modules
+# ====================
+# 依赖和临时文件
+# ====================
 node_modules/
-
-# 排除临时文件
-*.log
+credentials/
 .tmp/
 temp/

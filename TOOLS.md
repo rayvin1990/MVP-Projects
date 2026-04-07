@@ -41,6 +41,12 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 - `SECRET_PASSPHRASE`: 安全暗语（用于身份验证）
 
+## Gemini CLI
+
+- **API Key**: `AIzaSyDQHDJllKl8bVTgIDq7kxuP8YmqZJJ35Ds`
+- **用途**: Gemini CLI (gemini) 调用
+- **代理**: HTTP_PROXY/HTTPS_PROXY 已配置到 Gateway
+
 ## 配额追踪
 
 ### Web Search (Brave)
@@ -48,4 +54,30 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - **重置日期：** 每月 1 号
 - **当前状态：** 15/1000 次（2026-03-06）
 - **剩余次数：** 985 次
+
+## 模型切换器
+
+当模型不可用时，自动切换到下一个可用模型。
+
+**脚本位置：** `D:\openclaw\workspace\scripts\model-switcher\model-switcher.js`
+
+**使用方式：**
+```bash
+# 切换到下一个模型
+node scripts/model-switcher/model-switcher.js --next
+
+# 查看当前状态
+node scripts/model-switcher/model-switcher.js --status
+```
+
+**触发条件：**
+- 遇到模型调用失败时
+- 收到"切换模型"指令时
+
+**模型优先级：**
+1. xfyun-coding/glm-5
+2. xfyun-coding/astron-code-latest
+3. minimax-cn/MiniMax-M2.5
+4. deepseek/deepseek-chat
+5. deepseek/deepseek-reasoner
 

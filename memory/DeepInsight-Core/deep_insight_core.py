@@ -50,7 +50,7 @@ class DeepInsightCore:
         bvare_api_key = os.getenv('BVARE_API_KEY')
         self.dr_insight = DrInsight(bvare_api_key)
         self.sandbox = StrategicSandbox()
-        self.bvare = BvareSearch(bvare_api_key)
+        self.bvare = BvareSearch(bvare_api_key, use_domestic_only=False)
         self.heartbeat = HeartbeatMonitor(self.config.get('heartbeat', {}))
         
         # 系统状态

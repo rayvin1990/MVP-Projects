@@ -70,6 +70,7 @@
       "api_config": {
         "bvare": {
           "enabled": true,
+          "api_key": "BSAIDMvtwlFoSaGK9cPVQH0hsiw8t_w",
           "api_key_env": "BVARE_API_KEY",
           "use_cases": ["reddit_mining", "trend_analysis", "competitor_research", "global_search"],
           "rate_limit": "根据套餐而定"
