@@ -8,9 +8,9 @@ const WebSocket = require('ws');
 
 // 配置参数
 const CONFIG = {
-  appId: 'ace96de7',
-  apiKey: '90ca0950873fe31eb9056b28df48cb07',
-  apiSecret: 'YmI5NzJmZGE2M2IyNTBkMzkzY2Y1ZGYx',
+  appId: 'REDACTED',
+  apiKey: 'REDACTED',
+  apiSecret: 'REDACTED',
   host: 'spark-api.xf-yun.com',
   path: '/v4.0/chat',
   domain: '4.0Ultra'
