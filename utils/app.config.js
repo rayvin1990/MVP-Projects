@@ -31,9 +31,9 @@ const config = {
    * 讯飞星火 AI 配置（备用）
    */
   spark: {
-    appId: 'REDACTED',
-    apiKey: 'REDACTED',
-    apiSecret: 'REDACTED'
+    appId: 'ace96de7',
+    apiKey: '90ca0950873fe31eb9056b28df48cb07',
+    apiSecret: 'YmI5NzJmZGE2M2IyNTBkMzkzY2Y1ZGYx'
   },
   
   /**

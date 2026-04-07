@@ -67,7 +67,7 @@ const reply = await chatAsync('推荐一个口红颜�?, {
 import { InteractionFlow } from './src/core/interaction-flow';
 
 const flow = new InteractionFlow({
-  xunfei: { appId: 'REDACTED', apiKey: '...', apiSecret: '...' },
+  xunfei: { appId: 'ace96de7', apiKey: '...', apiSecret: '...' },
   deepseek: { apiKey: 'DEEPSEEK_API_KEY_PLACEHOLDER' }
 });
 
