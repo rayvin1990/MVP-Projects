@@ -43,7 +43,7 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ## Gemini CLI
 
-- **API Key**: `AIzaSyBAU5MJPC9p2UDhmXoeoc5k834DXd4mDJ0` (2026-04-07 更新)
+- **API Key**: `REDACTED` (2026-04-07 更新)
 - **用途**: Gemini CLI (gemini) 调用
 - **代理**: HTTP_PROXY/HTTPS_PROXY 已配置到 Gateway
 
